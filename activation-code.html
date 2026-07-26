@@ -75,7 +75,7 @@
         }
 
         /* ============================================================
-           جسيمات الخلفية
+           جسيمات الخلفية (أنيميشن محسّن)
            ============================================================ */
         .particles-container {
             position: fixed;
@@ -90,28 +90,82 @@
         .particle {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(220, 20, 60, 0.2), rgba(220, 20, 60, 0.05));
-            animation: floatParticle 20s ease-in-out infinite alternate;
-            will-change: transform;
+            background: radial-gradient(circle, rgba(220, 20, 60, 0.25), rgba(220, 20, 60, 0.02));
+            animation: floatParticle var(--duration, 25s) ease-in-out infinite alternate;
+            will-change: transform, opacity;
         }
-        .particle:nth-child(1) { width: 8px; height: 8px; top: 10%; left: 5%; animation-duration: 18s; animation-delay: 0s; }
-        .particle:nth-child(2) { width: 12px; height: 12px; top: 30%; left: 85%; animation-duration: 22s; animation-delay: 2s; }
-        .particle:nth-child(3) { width: 6px; height: 6px; top: 60%; left: 10%; animation-duration: 25s; animation-delay: 4s; }
-        .particle:nth-child(4) { width: 10px; height: 10px; top: 80%; left: 90%; animation-duration: 19s; animation-delay: 1s; }
-        .particle:nth-child(5) { width: 7px; height: 7px; top: 15%; left: 50%; animation-duration: 21s; animation-delay: 3s; }
-        .particle:nth-child(6) { width: 14px; height: 14px; top: 50%; left: 20%; animation-duration: 23s; animation-delay: 5s; }
-        .particle:nth-child(7) { width: 5px; height: 5px; top: 70%; left: 60%; animation-duration: 17s; animation-delay: 2.5s; }
-        .particle:nth-child(8) { width: 9px; height: 9px; top: 25%; left: 75%; animation-duration: 24s; animation-delay: 3.5s; }
-        .particle:nth-child(9) { width: 11px; height: 11px; top: 85%; left: 30%; animation-duration: 20s; animation-delay: 4.5s; }
-        .particle:nth-child(10) { width: 6px; height: 6px; top: 45%; left: 95%; animation-duration: 26s; animation-delay: 1.5s; }
-        .particle:nth-child(11) { width: 13px; height: 13px; top: 5%; left: 35%; animation-duration: 22s; animation-delay: 5.5s; }
-        .particle:nth-child(12) { width: 8px; height: 8px; top: 65%; left: 45%; animation-duration: 19s; animation-delay: 2s; }
+        .particle:nth-child(1) { width: 8px; height: 8px; top: 10%; left: 5%; --duration: 22s; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 14px; height: 14px; top: 30%; left: 85%; --duration: 26s; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 6px; height: 6px; top: 60%; left: 10%; --duration: 28s; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 18px; height: 18px; top: 80%; left: 90%; --duration: 24s; animation-delay: 1s; }
+        .particle:nth-child(5) { width: 7px; height: 7px; top: 15%; left: 50%; --duration: 20s; animation-delay: 3s; }
+        .particle:nth-child(6) { width: 20px; height: 20px; top: 50%; left: 20%; --duration: 30s; animation-delay: 5s; }
+        .particle:nth-child(7) { width: 5px; height: 5px; top: 70%; left: 60%; --duration: 23s; animation-delay: 2.5s; }
+        .particle:nth-child(8) { width: 12px; height: 12px; top: 25%; left: 75%; --duration: 27s; animation-delay: 3.5s; }
+        .particle:nth-child(9) { width: 10px; height: 10px; top: 85%; left: 30%; --duration: 21s; animation-delay: 4.5s; }
+        .particle:nth-child(10) { width: 16px; height: 16px; top: 45%; left: 95%; --duration: 29s; animation-delay: 1.5s; }
+        .particle:nth-child(11) { width: 9px; height: 9px; top: 5%; left: 35%; --duration: 24s; animation-delay: 5.5s; }
+        .particle:nth-child(12) { width: 11px; height: 11px; top: 65%; left: 45%; --duration: 22s; animation-delay: 2s; }
+
         @keyframes floatParticle {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-            25% { transform: translate(30px, -50px) scale(1.2); opacity: 0.6; }
-            50% { transform: translate(-20px, 40px) scale(0.8); opacity: 0.4; }
-            75% { transform: translate(40px, 20px) scale(1.1); opacity: 0.7; }
-            100% { transform: translate(-30px, -30px) scale(0.9); opacity: 0.3; }
+            0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+            33% { transform: translate(40px, -60px) scale(1.3); opacity: 0.7; }
+            66% { transform: translate(-30px, 50px) scale(0.8); opacity: 0.4; }
+            100% { transform: translate(60px, -30px) scale(1.1); opacity: 0.6; }
+        }
+
+        /* ============================================================
+           أنيميشن البطاقات (ظهور متدرج)
+           ============================================================ */
+        .luxury-card,
+        .spec-luxury-box,
+        .steps-container,
+        .ad-box-full,
+        .ad-box-vert,
+        .responsive-ad-row,
+        .activation-wrapper,
+        .faq-section,
+        .benefits-grid,
+        .problem-solution {
+            opacity: 0;
+            animation: springIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .luxury-card:nth-of-type(1) { animation-delay: 0.05s; }
+        .luxury-card:nth-of-type(2) { animation-delay: 0.10s; }
+        .spec-luxury-box { animation-delay: 0.15s; }
+        .steps-container { animation-delay: 0.20s; }
+        .ad-box-full { animation-delay: 0.25s; }
+        .responsive-ad-row { animation-delay: 0.30s; }
+        .activation-wrapper { animation-delay: 0.35s; }
+        .faq-section { animation-delay: 0.40s; }
+        .benefits-grid { animation-delay: 0.45s; }
+        .problem-solution { animation-delay: 0.50s; }
+
+        @keyframes springIn {
+            0% { opacity: 0; transform: scale(0.9) translateY(35px); }
+            60% { opacity: 1; transform: scale(1.02) translateY(-4px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* ============================================================
+           تأثيرات Hover للبطاقات
+           ============================================================ */
+        .luxury-card,
+        .steps-container,
+        .spec-luxury-box {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        .luxury-card:hover,
+        .steps-container:hover {
+            transform: translateY(-6px) scale(1.006);
+            border-color: rgba(220, 20, 60, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(220, 20, 60, 0.08);
+        }
+        .spec-luxury-box:hover {
+            transform: scale(1.04);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
         }
 
         /* ============================================================
@@ -133,6 +187,7 @@
             width: 100%;
             max-width: 560px;
             margin-bottom: 16px;
+            position: relative;
         }
         .activation-wrapper .form-group label {
             display: block;
@@ -141,6 +196,10 @@
             color: var(--txt2);
             margin-bottom: 6px;
             text-align: right;
+            transition: color 0.3s ease;
+        }
+        .activation-wrapper .form-group label:focus-within {
+            color: var(--accent);
         }
         .activation-wrapper .form-group input,
         .activation-wrapper .form-group select {
@@ -152,7 +211,7 @@
             color: var(--txt);
             font-size: 15px;
             font-family: inherit;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s ease;
             outline: none;
             direction: ltr;
             text-align: center;
@@ -162,13 +221,17 @@
         .activation-wrapper .form-group input:focus,
         .activation-wrapper .form-group select:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--glow-s);
+            box-shadow: 0 0 0 4px var(--glow-s), 0 0 25px var(--glow-s);
+            transform: scale(1.01);
         }
         .activation-wrapper .form-group select option {
             background: var(--surface);
             color: var(--txt);
         }
 
+        /* ============================================================
+           معلومات البصمة
+           ============================================================ */
         .hwid-info {
             width: 100%;
             max-width: 560px;
@@ -181,10 +244,15 @@
             font-size: 13px;
             color: var(--txt2);
             line-height: 1.8;
+            transition: all 0.3s ease;
         }
         .hwid-info.visible {
             display: block;
-            animation: fadeScale 0.3s ease forwards;
+            animation: fadeScale 0.4s ease forwards;
+        }
+        @keyframes fadeScale {
+            0% { opacity: 0; transform: scale(0.95) translateY(8px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
         .hwid-info strong {
             color: var(--txt);
@@ -199,6 +267,9 @@
             font-size: 12px;
         }
 
+        /* ============================================================
+           زر التوليد (مع أنيميشن)
+           ============================================================ */
         .btn-generate {
             display: inline-flex;
             align-items: center;
@@ -213,21 +284,44 @@
             color: #000;
             cursor: pointer;
             box-shadow: 0 4px 20px rgba(234, 179, 8, 0.35);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             width: 100%;
             max-width: 560px;
             font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-generate::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .btn-generate:hover:not(:disabled)::before {
+            opacity: 1;
         }
         .btn-generate:hover:not(:disabled) {
-            transform: scale(1.02) translateY(-3px);
-            box-shadow: 0 8px 30px rgba(234, 179, 8, 0.5);
+            transform: scale(1.03) translateY(-4px);
+            box-shadow: 0 8px 40px rgba(234, 179, 8, 0.5);
+        }
+        .btn-generate:active:not(:disabled) {
+            transform: scale(0.97);
         }
         .btn-generate:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             filter: grayscale(0.3);
+            transform: none !important;
         }
 
+        /* ============================================================
+           شريط التقدم (30 ثانية بدون أرقام)
+           ============================================================ */
         .progress-container {
             display: none;
             width: 100%;
@@ -255,20 +349,41 @@
         }
         .progress-bar-track {
             width: 100%;
-            height: 5px;
+            height: 6px;
             background: var(--border);
-            border-radius: 4px;
+            border-radius: 6px;
             overflow: hidden;
+            position: relative;
         }
         .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, var(--accent), var(--accent2));
-            border-radius: 4px;
-            transition: width 0.1s linear;
-            box-shadow: 0 0 12px var(--glow);
+            background: linear-gradient(90deg, var(--accent), var(--accent2), #facc15);
+            border-radius: 6px;
+            transition: width 0.15s linear;
+            box-shadow: 0 0 20px var(--glow);
+            position: relative;
+        }
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 30px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            border-radius: 6px;
+            animation: shimmer 1.2s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-30px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(30px); opacity: 0; }
         }
 
+        /* ============================================================
+           نتيجة الكود
+           ============================================================ */
         .result-box {
             margin-top: 18px;
             padding: 18px 20px;
@@ -276,13 +391,25 @@
             border: 1px solid var(--border);
             border-radius: 14px;
             display: none;
-            animation: fadeScale 0.4s ease forwards;
+            animation: fadeScale 0.5s ease forwards;
             text-align: center;
             width: 100%;
             max-width: 560px;
+            position: relative;
+            overflow: hidden;
         }
         .result-box.visible {
             display: block;
+        }
+        .result-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(34,197,94,0.04), transparent 60%);
+            pointer-events: none;
         }
         .result-box .label-result {
             font-size: 14px;
@@ -290,6 +417,18 @@
             color: #22c55e;
             display: block;
             margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+        .result-box .label-result .checkmark {
+            display: inline-block;
+            animation: checkBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes checkBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.4); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
         }
         .code-display {
             font-family: 'Inter', monospace;
@@ -299,13 +438,20 @@
             letter-spacing: 1.5px;
             text-align: center;
             padding: 12px;
-            background: rgba(34, 197, 94, 0.05);
+            background: rgba(34, 197, 94, 0.04);
             border-radius: 10px;
             border: 1px dashed rgba(34, 197, 94, 0.2);
             word-break: break-all;
             direction: ltr;
             margin: 4px 0 8px;
             overflow-x: auto;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        .code-display:hover {
+            border-color: rgba(34,197,94,0.4);
+            box-shadow: 0 0 30px rgba(34,197,94,0.05);
         }
         .btn-copy {
             display: inline-flex;
@@ -319,27 +465,30 @@
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             font-family: inherit;
+            position: relative;
+            z-index: 1;
         }
         .btn-copy:hover {
             border-color: var(--accent);
             background: var(--glow-s);
-            transform: scale(1.02);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--glow-s);
+        }
+        .btn-copy:active {
+            transform: scale(0.95);
         }
         .result-note {
             margin-top: 8px;
             font-size: 12px;
             color: var(--txt3);
-        }
-
-        @keyframes fadeScale {
-            0% { opacity: 0; transform: scale(0.96) translateY(8px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
+            position: relative;
+            z-index: 1;
         }
 
         /* ============================================================
-           باقي التنسيقات
+           باقي التنسيقات (بدون تغيير)
            ============================================================ */
         .luxury-card {
             background: linear-gradient(145deg, #0a0a0c, #121217);
@@ -347,13 +496,7 @@
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.03);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             margin-bottom: 28px;
-        }
-        .luxury-card:hover {
-            border-color: rgba(220, 20, 60, 0.35);
-            box-shadow: 0 20px 40px rgba(220, 20, 60, 0.05), 0 0 25px rgba(220, 20, 60, 0.12);
-            transform: translateY(-3px) scale(1.005);
         }
         .luxury-card h3 {
             color: #dc143c;
@@ -380,7 +523,7 @@
             margin-bottom: 12px;
             padding-right: 0;
             border-right: 4px solid transparent;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
         .luxury-card ul li:hover {
             color: #ffffff;
@@ -407,12 +550,6 @@
             border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.04);
             text-align: center;
-            transition: all 0.3s ease;
-        }
-        .spec-luxury-box:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: scale(1.03);
-            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.05);
         }
         .spec-luxury-box .label {
             display: block;
@@ -433,10 +570,6 @@
         .spec-luxury-box.highlight {
             border-color: rgba(22, 163, 74, 0.15);
         }
-        .spec-luxury-box.highlight:hover {
-            border-color: rgba(34, 197, 94, 0.4);
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
-        }
 
         .steps-container {
             background: linear-gradient(145deg, #0a0a0c, #121217);
@@ -444,14 +577,8 @@
             border-radius: 20px;
             border: 1px solid rgba(220, 20, 60, 0.15);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            overflow: hidden;
             margin-bottom: 28px;
-        }
-        .steps-container:hover {
-            border-color: rgba(220, 20, 60, 0.35);
-            box-shadow: 0 20px 40px rgba(220, 20, 60, 0.05), 0 0 25px rgba(220, 20, 60, 0.12);
-            transform: translateY(-3px);
+            overflow: hidden;
         }
         .steps-container h3 {
             color: #dc143c;
@@ -467,7 +594,7 @@
             gap: 16px;
             padding: 12px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
         .step-item:last-child {
             border-bottom: none;
@@ -570,9 +697,6 @@
             width: 100%;
         }
 
-        /* ============================================================
-           أقسام جديدة لمحتوى AdSense
-           ============================================================ */
         .faq-section {
             margin: 30px 0 20px;
         }
@@ -687,37 +811,8 @@
         }
 
         /* ============================================================
-           أنيميشن
+           تحسينات الشاشات الصغيرة
            ============================================================ */
-        @keyframes springIn {
-            0% { opacity: 0; transform: scale(0.9) translateY(30px); }
-            60% { opacity: 1; transform: scale(1.02) translateY(-4px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .luxury-card,
-        .spec-luxury-box,
-        .steps-container,
-        .ad-box-full,
-        .ad-box-vert,
-        .responsive-ad-row,
-        .activation-wrapper,
-        .faq-section,
-        .benefits-grid,
-        .problem-solution {
-            opacity: 0;
-            animation: springIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-        .luxury-card:nth-of-type(1) { animation-delay: 0.05s; }
-        .luxury-card:nth-of-type(2) { animation-delay: 0.10s; }
-        .spec-luxury-box { animation-delay: 0.15s; }
-        .steps-container { animation-delay: 0.20s; }
-        .ad-box-full { animation-delay: 0.25s; }
-        .responsive-ad-row { animation-delay: 0.30s; }
-        .activation-wrapper { animation-delay: 0.35s; }
-        .faq-section { animation-delay: 0.40s; }
-        .benefits-grid { animation-delay: 0.45s; }
-        .problem-solution { animation-delay: 0.50s; }
-
         @media(max-width:820px) {
             .responsive-ad-row { grid-template-columns: 1fr; }
             .ad-box-full { min-height: 180px; }
@@ -1075,10 +1170,10 @@
                         <!-- زر التوليد -->
                         <button class="btn-generate" id="generateBtn" data-tr="generateBtn">توليد الكود</button>
 
-                        <!-- شريط التقدم -->
+                        <!-- شريط التقدم (30 ثانية بدون عدادات) -->
                         <div class="progress-container" id="progressContainer">
                             <div class="progress-message" id="progressMessage">
-                                <span class="highlight" id="progressHighlight" data-tr="progressPreparing">جاري الاتصال بالخادم...</span>
+                                <span class="highlight" id="progressHighlight" data-tr="progressPreparing">جاري التجهيز...</span>
                             </div>
                             <div class="progress-bar-track">
                                 <div class="progress-bar-fill" id="progressFill"></div>
@@ -1087,7 +1182,7 @@
 
                         <!-- النتيجة -->
                         <div class="result-box" id="resultBox">
-                            <span class="label-result" id="resultLabel" data-tr="resultLabel">تم إنشاء الكود بنجاح</span>
+                            <span class="label-result" id="resultLabel" data-tr="resultLabel"><span class="checkmark">✅</span> تم إنشاء الكود بنجاح</span>
                             <div class="code-display" id="codeDisplay">CBBX-XXXX-XXXX-XXXX-XXXX-XXXX</div>
                             <button class="btn-copy" id="copyBtn" data-tr="copyBtn">نسخ الكود</button>
                             <div class="result-note" id="resultNote" data-tr="resultNote">الكود صالح لجميع الأدوات لمدة 24 ساعة.</div>
@@ -1138,11 +1233,259 @@
 
     <button class="back-to-top" id="backToTop" aria-label="الرجوع للأعلى">↑</button>
 
-    <script src="core.js"></script>
-    <script src="tools-loader.js"></script>
+    <!-- ============================================================
+    تحميل ملف التشفير (code-generator.js) - مدمج هنا
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // code-generator.js (مدمج بالكامل)
+        // وحدة توليد الأكواد - مطابقة 100% لبرنامج CBBX (بايثون)
+        // تعتمد على Uint8Array و TextEncoder
+        // ============================================================
+
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // 1. المفاتيح السرية (مطابقة لـ 1.py)
+            // ============================================================
+            var MASTER_KEY = "X9F2_MASTER_CBBX_2026_A1B2C3D4_E5F6G7H8";
+            var SECONDARY_KEY = "Y7K3_SALT_CBBX_2026_I9J8K7L6_M5N4O3P2";
+            var FIXED_NONCE = "Z1X4_NONCE_CBBX_2026_Q2W3E4R5_T6Y7U8I9";
+
+            // ============================================================
+            // 2. دوال مساعدة
+            // ============================================================
+            function _toBytes(str) {
+                return new TextEncoder().encode(str);
+            }
+
+            function _concatBytes(a, b) {
+                var res = new Uint8Array(a.length + b.length);
+                res.set(a, 0);
+                res.set(b, a.length);
+                return res;
+            }
+
+            function _toHex(bytes) {
+                var hex = '';
+                for (var i = 0; i < bytes.length; i++) {
+                    var h = bytes[i].toString(16);
+                    if (h.length === 1) h = '0' + h;
+                    hex += h;
+                }
+                return hex.toUpperCase();
+            }
+
+            // ============================================================
+            // 3. خوارزمية SHA-256 (ترجع Uint8Array بطول 32)
+            // ============================================================
+            function _sha256_raw(data) {
+                var bytes = new Uint8Array(data);
+                var ml = bytes.length * 8;
+
+                var newLen = bytes.length + 1;
+                while ((newLen * 8) % 512 !== 448) { newLen++; }
+                var padded = new Uint8Array(newLen + 8);
+                padded.set(bytes, 0);
+                padded[bytes.length] = 0x80;
+
+                var view = new DataView(padded.buffer);
+                view.setBigUint64(padded.length - 8, BigInt(ml), false);
+
+                var K = [
+                    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
+                    0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+                    0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
+                    0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+                    0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc,
+                    0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+                    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7,
+                    0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+                    0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13,
+                    0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+                    0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3,
+                    0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+                    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5,
+                    0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+                    0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208,
+                    0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+                ];
+
+                var H = [
+                    0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+                    0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
+                ];
+
+                function _rotR(v, a) {
+                    return (v >>> a) | (v << (32 - a));
+                }
+
+                var chunks = [];
+                for (var i = 0; i < padded.length; i += 64) {
+                    chunks.push(padded.slice(i, i + 64));
+                }
+
+                for (var c = 0; c < chunks.length; c++) {
+                    var w = new Array(64);
+                    for (var j = 0; j < 16; j++) {
+                        var idx = j * 4;
+                        w[j] = (chunks[c][idx] << 24) |
+                            (chunks[c][idx + 1] << 16) |
+                            (chunks[c][idx + 2] << 8) |
+                            chunks[c][idx + 3];
+                    }
+                    for (var j = 16; j < 64; j++) {
+                        var s0 = _rotR(w[j - 15], 7) ^ _rotR(w[j - 15], 18) ^ (w[j - 15] >>> 3);
+                        var s1 = _rotR(w[j - 2], 17) ^ _rotR(w[j - 2], 19) ^ (w[j - 2] >>> 10);
+                        w[j] = (w[j - 16] + s0 + w[j - 7] + s1) >>> 0;
+                    }
+
+                    var a = H[0],
+                        b = H[1],
+                        c2 = H[2],
+                        d = H[3];
+                    var e = H[4],
+                        f = H[5],
+                        g = H[6],
+                        h = H[7];
+
+                    for (var j = 0; j < 64; j++) {
+                        var S1 = _rotR(e, 6) ^ _rotR(e, 11) ^ _rotR(e, 25);
+                        var ch = (e & f) ^ (~e & g);
+                        var t1 = (h + S1 + ch + K[j] + w[j]) >>> 0;
+                        var S0 = _rotR(a, 2) ^ _rotR(a, 13) ^ _rotR(a, 22);
+                        var maj = (a & b) ^ (a & c2) ^ (b & c2);
+                        var t2 = (S0 + maj) >>> 0;
+
+                        h = g;
+                        g = f;
+                        f = e;
+                        e = (d + t1) >>> 0;
+                        d = c2;
+                        c2 = b;
+                        b = a;
+                        a = (t1 + t2) >>> 0;
+                    }
+
+                    H[0] = (H[0] + a) >>> 0;
+                    H[1] = (H[1] + b) >>> 0;
+                    H[2] = (H[2] + c2) >>> 0;
+                    H[3] = (H[3] + d) >>> 0;
+                    H[4] = (H[4] + e) >>> 0;
+                    H[5] = (H[5] + f) >>> 0;
+                    H[6] = (H[6] + g) >>> 0;
+                    H[7] = (H[7] + h) >>> 0;
+                }
+
+                var result = new Uint8Array(32);
+                for (var i = 0; i < 8; i++) {
+                    result[i * 4] = (H[i] >>> 24) & 0xFF;
+                    result[i * 4 + 1] = (H[i] >>> 16) & 0xFF;
+                    result[i * 4 + 2] = (H[i] >>> 8) & 0xFF;
+                    result[i * 4 + 3] = H[i] & 0xFF;
+                }
+                return result;
+            }
+
+            // ============================================================
+            // 4. دالة HMAC-SHA256 (مطابقة لبايثون)
+            // ============================================================
+            function _hmac(keyStr, msgStr) {
+                var keyBytes = _toBytes(keyStr);
+                var msgBytes = _toBytes(msgStr);
+                var bs = 64;
+
+                if (keyBytes.length > bs) {
+                    keyBytes = _sha256_raw(keyBytes);
+                }
+
+                var paddedKey = new Uint8Array(bs);
+                paddedKey.set(keyBytes, 0);
+                for (var i = keyBytes.length; i < bs; i++) {
+                    paddedKey[i] = 0x00;
+                }
+
+                var iKeyPad = new Uint8Array(bs);
+                var oKeyPad = new Uint8Array(bs);
+                for (var i = 0; i < bs; i++) {
+                    iKeyPad[i] = paddedKey[i] ^ 0x36;
+                    oKeyPad[i] = paddedKey[i] ^ 0x5c;
+                }
+
+                var innerData = _concatBytes(iKeyPad, msgBytes);
+                var innerHash = _sha256_raw(innerData);
+
+                var outerData = _concatBytes(oKeyPad, innerHash);
+                var outerHash = _sha256_raw(outerData);
+
+                return _toHex(outerHash);
+            }
+
+            // ============================================================
+            // 5. الدالة الرئيسية (تُصدر للاستخدام في الصفحة)
+            // ============================================================
+            window.generateActivationCode = function(hwid) {
+                if (!hwid || typeof hwid !== 'string' || hwid.length < 10) {
+                    throw new Error('Invalid HWID');
+                }
+                hwid = hwid.toUpperCase().trim();
+
+                var today = new Date();
+                var year = today.getUTCFullYear();
+                var month = String(today.getUTCMonth() + 1).padStart(2, '0');
+                var day = String(today.getUTCDate()).padStart(2, '0');
+                var dateStr = year + '-' + month + '-' + day;
+
+                var basePayload = hwid + '_' + dateStr + '_' + SECONDARY_KEY;
+                var hmacDigest = _hmac(MASTER_KEY, basePayload);
+                var combined = hmacDigest + '_' + FIXED_NONCE;
+                var secondHash = _toHex(_sha256_raw(_toBytes(combined)));
+                var finalHash = _toHex(_sha256_raw(_toBytes(hmacDigest + secondHash)));
+
+                var parts = [];
+                for (var i = 0; i < 6; i++) {
+                    parts.push(finalHash.substring(i * 4, i * 4 + 4));
+                }
+
+                return 'CBBX-' + parts[0] + '-' + parts[1] + '-' + parts[2] + '-' + parts[3] + '-' + parts[4] + '-' + parts[5];
+            };
+
+            // ============================================================
+            // 6. دالة لتوليد كود أسبوعي (للتوافق مع بايثون)
+            // ============================================================
+            window.generateWeeklyActivationCode = function(hwid) {
+                if (!hwid || typeof hwid !== 'string' || hwid.length < 10) {
+                    throw new Error('Invalid HWID');
+                }
+                hwid = hwid.toUpperCase().trim();
+
+                var today = new Date();
+                today.setUTCDate(today.getUTCDate() + 7);
+                var year = today.getUTCFullYear();
+                var month = String(today.getUTCMonth() + 1).padStart(2, '0');
+                var day = String(today.getUTCDate()).padStart(2, '0');
+                var dateStr = year + '-' + month + '-' + day;
+
+                var basePayload = hwid + '_' + dateStr + '_' + SECONDARY_KEY;
+                var hmacDigest = _hmac(MASTER_KEY, basePayload);
+                var combined = hmacDigest + '_' + FIXED_NONCE;
+                var secondHash = _toHex(_sha256_raw(_toBytes(combined)));
+                var finalHash = _toHex(_sha256_raw(_toBytes(hmacDigest + secondHash)));
+
+                var parts = [];
+                for (var i = 0; i < 6; i++) {
+                    parts.push(finalHash.substring(i * 4, i * 4 + 4));
+                }
+                return 'CBBX-' + parts[0] + '-' + parts[1] + '-' + parts[2] + '-' + parts[3] + '-' + parts[4] + '-' + parts[5];
+            };
+
+            console.log('✅ CBBX Code Generator (Uint8Array, Python-compatible) loaded.');
+        })();
+    </script>
 
     <!-- ============================================================
-    سكريبت الترجمة والديناميكيات
+    سكريبت الترجمة والديناميكيات (مع شريط تقدم 30 ثانية)
     ============================================================ -->
     <script>
         (function() {
@@ -1162,13 +1505,14 @@
             const hwidInfo = document.getElementById('hwidInfo');
             const hwidInfoText = document.getElementById('hwidInfoText');
             const resultNote = document.getElementById('resultNote');
+            const resultLabel = document.getElementById('resultLabel');
 
             // =========================================================
-            // 2. نظام الترجمة الداخلي (للنصوص الديناميكية)
+            // 2. نظام الترجمة الداخلي
             // =========================================================
             const translations = {
                 ar: {
-                    progressPreparing: 'جاري الاتصال بالخادم...',
+                    progressPreparing: 'جاري التجهيز...',
                     progressVerifying: 'جاري التحقق من البصمة...',
                     progressFinalizing: 'توليد الكود النهائي...',
                     progressAlmost: 'الكود جاهز تقريباً...',
@@ -1176,13 +1520,13 @@
                     generate: 'توليد الكود',
                     hwidPlaceholder: 'ألصق بصمة جهازك هنا...',
                     hwidLabel: 'بصمة الجهاز المتقدمة',
-                    resultLabel: 'تم إنشاء الكود بنجاح',
+                    resultLabel: '✅ تم إنشاء الكود بنجاح',
                     copyBtn: 'نسخ الكود',
                     resultNote: 'الكود صالح لجميع الأدوات لمدة 24 ساعة.',
                     hwidInfo: '✅ <strong>بصمة متقدمة</strong> — تحتوي على بيانات جهازك المشفرة'
                 },
                 en: {
-                    progressPreparing: 'Connecting to server...',
+                    progressPreparing: 'Preparing...',
                     progressVerifying: 'Verifying HWID...',
                     progressFinalizing: 'Finalizing code...',
                     progressAlmost: 'Almost ready...',
@@ -1190,7 +1534,7 @@
                     generate: 'Generate Code',
                     hwidPlaceholder: 'Paste your HWID here...',
                     hwidLabel: 'Advanced Device HWID',
-                    resultLabel: 'Code generated successfully',
+                    resultLabel: '✅ Code generated successfully',
                     copyBtn: 'Copy Code',
                     resultNote: 'Code is valid for all tools for 24 hours.',
                     hwidInfo: '✅ <strong>Advanced HWID</strong> — Contains your encrypted device data'
@@ -1223,13 +1567,9 @@
                     hwidInfoText.innerHTML = t('hwidInfo');
                 }
                 if (resultBox.classList.contains('visible')) {
-                    document.getElementById('resultLabel').textContent = t('resultLabel');
+                    resultLabel.innerHTML = t('resultLabel');
                     document.getElementById('copyBtn').textContent = t('copyBtn');
                     resultNote.textContent = t('resultNote');
-                }
-                const currentMsg = progressHighlight.textContent;
-                if (currentMsg.includes('الاتصال') || currentMsg.includes('Connecting') || currentMsg === t('progressPreparing')) {
-                    progressHighlight.textContent = t('progressPreparing');
                 }
             }
 
@@ -1264,6 +1604,10 @@
                 if (hwid.length >= 10 && isValidHWID(hwid)) {
                     hwidInfo.classList.add('visible');
                     hwidInfoText.innerHTML = t('hwidInfo');
+                    hwidInfo.style.animation = 'none';
+                    requestAnimationFrame(() => {
+                        hwidInfo.style.animation = 'fadeScale 0.4s ease forwards';
+                    });
                 } else {
                     hwidInfo.classList.remove('visible');
                 }
@@ -1271,9 +1615,17 @@
 
             function copyCode() {
                 const code = codeDisplay.textContent;
-                if (code && code !== 'CBBX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX') {
+                if (code && code !== 'CBBX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX' && code !== 'CBBX-XXXX-XXXX-XXXX-XXXX-XXXX') {
                     navigator.clipboard.writeText(code).then(() => {
-                        alert('✅ ' + (currentLang === 'ar' ? 'تم نسخ الكود بنجاح!' : 'Code copied successfully!'));
+                        const btn = document.getElementById('copyBtn');
+                        btn.textContent = '✅ ' + (currentLang === 'ar' ? 'تم النسخ!' : 'Copied!');
+                        btn.style.borderColor = '#22c55e';
+                        btn.style.color = '#22c55e';
+                        setTimeout(() => {
+                            btn.textContent = t('copyBtn');
+                            btn.style.borderColor = '';
+                            btn.style.color = '';
+                        }, 2000);
                     }).catch(() => {
                         alert('📋 ' + (currentLang === 'ar' ? 'انسخ الكود يدوياً: ' : 'Copy manually: ') + code);
                     });
@@ -1295,6 +1647,13 @@
                     return;
                 }
 
+                // ✅ تأكد من وجود الدالة (الآن مدمجة في الصفحة)
+                if (typeof window.generateActivationCode !== 'function') {
+                    alert('❌ ' + (currentLang === 'ar' ? 'لم يتم تحميل ملف التشفير بشكل صحيح.' :
+                        'Code generator not loaded properly.'));
+                    return;
+                }
+
                 isProcessing = true;
                 generateBtn.disabled = true;
                 generateBtn.textContent = t('generating');
@@ -1306,54 +1665,52 @@
                 progressFill.style.width = '0%';
                 progressHighlight.textContent = t('progressPreparing');
 
-                fetch('https://yourdomain.com/api/generate-code.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify({ hwid: hwid })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        throw new Error(data.error);
+                const totalSeconds = 30;
+                let elapsed = 0;
+                const interval = setInterval(() => {
+                    elapsed += 0.1;
+                    const progress = Math.min(elapsed / totalSeconds, 1);
+                    progressFill.style.width = (progress * 100) + '%';
+
+                    if (progress < 0.3) {
+                        progressHighlight.textContent = t('progressPreparing');
+                    } else if (progress < 0.6) {
+                        progressHighlight.textContent = t('progressVerifying');
+                    } else if (progress < 0.85) {
+                        progressHighlight.textContent = t('progressFinalizing');
+                    } else {
+                        progressHighlight.textContent = t('progressAlmost');
                     }
 
-                    let progress = 0;
-                    const interval = setInterval(() => {
-                        progress += 5;
-                        if (progress >= 90) {
-                            clearInterval(interval);
-                            progress = 100;
-                        }
-                        progressFill.style.width = progress + '%';
-                    }, 100);
-
-                    setTimeout(() => {
-                        document.getElementById('resultLabel').textContent = t('resultLabel');
-                        document.getElementById('copyBtn').textContent = t('copyBtn');
-                        resultNote.textContent = t('resultNote');
-
-                        codeDisplay.textContent = data.code;
-                        resultBox.classList.add('visible');
-                        resultBox.style.display = 'block';
-
+                    if (progress >= 1) {
+                        clearInterval(interval);
                         progressContainer.classList.remove('visible');
-                        progressFill.style.width = '0%';
-                        progressHighlight.textContent = t('progressPreparing');
-                        isProcessing = false;
-                        generateBtn.disabled = false;
-                        generateBtn.textContent = t('generate');
-                    }, 1200);
-                })
-                .catch(error => {
-                    alert('❌ ' + (currentLang === 'ar' ? 'حدث خطأ: ' : 'Error: ') + error.message);
-                    progressContainer.classList.remove('visible');
-                    isProcessing = false;
-                    generateBtn.disabled = false;
-                    generateBtn.textContent = t('generate');
-                });
+                        try {
+                            const generatedCode = window.generateActivationCode(hwid);
+                            resultLabel.innerHTML = t('resultLabel');
+                            document.getElementById('copyBtn').textContent = t('copyBtn');
+                            resultNote.textContent = t('resultNote');
+
+                            codeDisplay.textContent = generatedCode;
+                            resultBox.classList.add('visible');
+                            resultBox.style.display = 'block';
+                            resultBox.style.animation = 'none';
+                            requestAnimationFrame(() => {
+                                resultBox.style.animation = 'fadeScale 0.5s ease forwards';
+                            });
+
+                            isProcessing = false;
+                            generateBtn.disabled = false;
+                            generateBtn.textContent = t('generate');
+                        } catch (err) {
+                            alert('❌ ' + (currentLang === 'ar' ? 'حدث خطأ أثناء التوليد: ' : 'Generation error: ') + err
+                            .message);
+                            isProcessing = false;
+                            generateBtn.disabled = false;
+                            generateBtn.textContent = t('generate');
+                        }
+                    }
+                }, 100);
             }
 
             generateBtn.addEventListener('click', startGeneration);
@@ -1372,7 +1729,7 @@
                 if (hwidLabel) hwidLabel.textContent = t('hwidLabel');
             }, 500);
 
-            console.log('✅ CBBX Activation Page (AdSense-ready & fully translatable) loaded.');
+            console.log('✅ CBBX Activation Page (Integrated generator, 30s progress) loaded.');
         })();
     </script>
 
