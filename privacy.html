@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBBX — سياسة الخصوصية</title>
+    <meta name="description" content="سياسة الخصوصية لمنصة CBBX – تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية عند استخدام منصتنا.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .legal-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 28px;
+            padding: 40px 44px;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.04);
+        }
+        .legal-header {
+            text-align: center;
+            padding-bottom: 28px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 32px;
+        }
+        .legal-header h1 {
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--txt);
+            margin-bottom: 6px;
+        }
+        .legal-header .sub {
+            color: var(--txt2);
+            font-size: 15px;
+        }
+        .legal-section {
+            margin-bottom: 30px;
+        }
+        .legal-section h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--txt);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legal-section h2 .num {
+            color: var(--accent);
+            font-size: 16px;
+            font-weight: 900;
+            background: var(--glow-s);
+            padding: 2px 12px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+        }
+        .legal-section p {
+            color: var(--txt2);
+            font-size: 16.5px;
+            line-height: 2;
+            margin-bottom: 8px;
+        }
+        .legal-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+        .legal-section ul li {
+            padding: 6px 0 6px 30px;
+            position: relative;
+            color: var(--txt2);
+            font-size: 16px;
+            line-height: 1.8;
+            border-bottom: 1px solid var(--border);
+        }
+        .legal-section ul li:last-child {
+            border-bottom: none;
+        }
+        .legal-section ul li::before {
+            content: "•";
+            position: absolute;
+            right: 0;
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 20px;
+        }
+        .legal-section .highlight-box {
+            background: var(--surface2);
+            padding: 16px 20px;
+            border-radius: 14px;
+            border-right: 4px solid var(--accent);
+            margin: 12px 0;
+        }
+        .legal-section .highlight-box strong {
+            color: var(--txt);
+        }
+
+        .back-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--txt2);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 40px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .back-row:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateX(-4px);
+        }
+        .back-row svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+        }
+
+        @media(max-width:700px) {
+            .legal-box { padding: 24px 18px; }
+            .legal-header h1 { font-size: 28px; }
+            .legal-section h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-hdr">
+        <div class="hdr-inner">
+            <a href="index.html" class="logo-block" translate="no" style="text-decoration:none;">
+                <div class="logo-box">CB<em>BX</em></div>
+            </a>
+            <a href="index.html" class="nav-pill" data-tr="navHome" style="text-decoration:none;">الرئيسية</a>
+            <div class="tools-wrap">
+                <button class="tools-wrap-btn">
+                    <span data-tr="navTools">الأدوات</span>
+                    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="tools-dd" id="toolsDd"></ul>
+            </div>
+            <a href="activation-code.html" class="nav-pill" data-tr="navActivation" style="text-decoration:none;">كود تفعيل</a>
+            <div class="hdr-spacer"></div>
+            <button class="ico-btn" id="themeBtn" aria-label="تبديل الثيم">
+                <svg class="sun-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+            </button>
+            <div class="lang-wrap">
+                <button class="lang-btn" id="langBtn">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+                    <span id="langLabel">AR</span>
+                </button>
+                <ul class="lang-menu" id="langMenu"></ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    المحتوى الرئيسي — سياسة الخصوصية
+    ============================================================ -->
+    <div class="ctn" style="padding-top: calc(var(--hh) + 40px); padding-bottom: 80px;">
+        <div class="back-row" onclick="window.location.href='index.html'" style="margin-bottom:24px">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            <span data-tr="navHome">الرئيسية</span>
+        </div>
+
+        <div class="legal-box">
+            <div class="legal-header">
+                <h1 data-tr="privacyTitle">🔒 سياسة الخصوصية</h1>
+                <div class="sub" data-tr="privacyUpdate">آخر تحديث: 25 يوليو 2026</div>
+            </div>
+            <div class="legal-body">
+
+                <!-- 1. مقدمة -->
+                <div class="legal-section">
+                    <h2><span class="num">١</span> <span data-tr="privacySection1Title">مقدمة وترحيب</span></h2>
+                    <p data-tr="privacySection1Text">في CBBX، نضع خصوصية بياناتك في صدارة أولوياتنا. هذه السياسة توضح كيفية جمع واستخدام وحماية المعلومات الشخصية التي تشاركها معنا عند استخدام منصتنا الإلكترونية (المشار إليها بـ "المنصة" أو "CBBX"). نحن نلتزم بالشفافية الكاملة فيما يتعلق ببياناتك، ونعمل باستمرار على تعزيز إجراءات الأمان للحفاظ على ثقتك بنا.</p>
+                    <div class="highlight-box" data-tr="privacySection1Note">
+                        <strong>📌 التزامنا:</strong> لا نقوم ببيع بياناتك الشخصية لأي طرف ثالث تحت أي ظرف. جميع المعلومات التي نجمعها تُستخدم فقط لتحسين تجربتك على المنصة والرد على استفساراتك.
+                    </div>
+                </div>
+
+                <!-- 2. المعلومات التي نجمعها -->
+                <div class="legal-section">
+                    <h2><span class="num">٢</span> <span data-tr="privacySection2Title">المعلومات التي نجمعها</span></h2>
+                    <p data-tr="privacySection2Text">نحن نجمع نوعين من المعلومات من المستخدمين:</p>
+                    <ul data-tr="privacySection2List">
+                        <li><strong>المعلومات الشخصية المقدمة طواعية:</strong> مثل الاسم، والبريد الإلكتروني، وأي بيانات أخرى تقدمها عند ملء نماذج التواصل أو التسجيل في خدماتنا.</li>
+                        <li><strong>المعلومات التقنية التلقائية:</strong> مثل عنوان IP، ونوع المتصفح، ونظام التشغيل، والصفحات التي تزورها، ووقت الزيارة، وذلك لتحسين أداء المنصة وتجربة المستخدم.</li>
+                        <li><strong>ملفات تعريف الارتباط (Cookies):</strong> نستخدمها لتذكر تفضيلاتك (مثل اللغة والثيم) وتحليل حركة المرور على الموقع.</li>
+                    </ul>
+                    <p data-tr="privacySection2Text2"><strong>ملاحظة هامة:</strong> لا نقوم بتخزين أي من ملفات الفيديو أو الصوت التي تقوم بمعالجتها عبر أدواتنا. جميع عمليات المعالجة تتم محلياً على جهازك، ولا يتم رفع أي محتوى إلى خوادمنا. هذا يضمن خصوصية مطلقة لملفاتك الإبداعية.</p>
+                </div>
+
+                <!-- 3. كيف نجمع المعلومات -->
+                <div class="legal-section">
+                    <h2><span class="num">٣</span> <span data-tr="privacySection3Title">كيف نجمع المعلومات</span></h2>
+                    <p data-tr="privacySection3Text">نقوم بجمع المعلومات بالطرق التالية:</p>
+                    <ul data-tr="privacySection3List">
+                        <li><strong>مباشرة منك:</strong> عند ملء نماذج التواصل، أو الاشتراك في النشرة البريدية، أو التواصل معنا عبر البريد الإلكتروني أو واتساب.</li>
+                        <li><strong>تلقائياً:</strong> عبر تقنيات التتبع القياسية مثل ملفات تعريف الارتباط وسجلات الخادم (Server Logs) التي تسجل تفاعلك مع المنصة.</li>
+                        <li><strong>من خلال تحليلات الموقع:</strong> نستخدم أدوات تحليل مثل Google Analytics لفهم كيفية استخدام الزوار للمنصة وتحسينها. هذه الأدوات تجمع بيانات مجمعة وغير شخصية.</li>
+                    </ul>
+                </div>
+
+                <!-- 4. كيف نستخدم المعلومات -->
+                <div class="legal-section">
+                    <h2><span class="num">٤</span> <span data-tr="privacySection4Title">كيف نستخدم المعلومات</span></h2>
+                    <p data-tr="privacySection4Text">نستخدم البيانات التي نجمعها للأغراض التالية:</p>
+                    <ul data-tr="privacySection4List">
+                        <li><strong>الرد على استفساراتك:</strong> التواصل معك وحل مشكلاتك التقنية أو الإدارية.</li>
+                        <li><strong>تحسين المنصة:</strong> تحليل سلوك المستخدمين لتطوير الأدوات وإضافة ميزات جديدة تلبي احتياجاتهم.</li>
+                        <li><strong>تخصيص التجربة:</strong> تذكر تفضيلاتك (اللغة، الثيم) لتوفير تجربة مستخدم سلسة ومخصصة.</li>
+                        <li><strong>الإشعارات والتحديثات:</strong> إرسال تنبيهات حول تحديثات المنصة، أو الأدوات الجديدة، أو تغييرات السياسات (فقط إذا وافقت على تلقي هذه الإشعارات).</li>
+                        <li><strong>الأمان والامتثال:</strong> حماية المنصة من الأنشطة الاحتيالية أو الضارة، والامتثال للمتطلبات القانونية.</li>
+                    </ul>
+                    <div class="highlight-box" data-tr="privacySection4Note">
+                        <strong>⚠️ تنبيه:</strong> لا نستخدم بياناتك لأغراض تسويقية أو إعلانية دون موافقتك الصريحة. يمكنك إلغاء الاشتراك في أي وقت من خلال التواصل معنا.
+                    </div>
+                </div>
+
+                <!-- 5. الأساس القانوني للمعالجة -->
+                <div class="legal-section">
+                    <h2><span class="num">٥</span> <span data-tr="privacySection5Title">الأساس القانوني لمعالجة البيانات</span></h2>
+                    <p data-tr="privacySection5Text">نحن نعالج بياناتك الشخصية بناءً على الأسس القانونية التالية:</p>
+                    <ul data-tr="privacySection5List">
+                        <li><strong>الموافقة:</strong> عندما تقدم بياناتك طواعية عبر نماذج التواصل، فإنك توافق على استخدامها للغرض المذكور.</li>
+                        <li><strong>التنفيذ التعاقدي:</strong> عند استخدامك لأدواتنا، فإننا نعالج بياناتك التقنية لتقديم الخدمة المطلوبة.</li>
+                        <li><strong>المصلحة المشروعة:</strong> لتحسين المنصة وضمان أمانها وتطويرها، مع ضمان عدم تأثير ذلك على حقوقك وحرياتك الأساسية.</li>
+                        <li><strong>الالتزام القانوني:</strong> للامتثال للقوانين واللوائح المعمول بها، مثل قوانين حماية البيانات.</li>
+                    </ul>
+                </div>
+
+                <!-- 6. ملفات تعريف الارتباط (Cookies) -->
+                <div class="legal-section">
+                    <h2><span class="num">٦</span> <span data-tr="privacySection6Title">ملفات تعريف الارتباط (Cookies)</span></h2>
+                    <p data-tr="privacySection6Text">نستخدم ملفات تعريف الارتباط لتحسين أداء المنصة وتجربة المستخدم. تنقسم ملفات الارتباط التي نستخدمها إلى:</p>
+                    <ul data-tr="privacySection6List">
+                        <li><strong>الأساسية:</strong> ضرورية لتشغيل المنصة، مثل تذكر حالة تسجيل الدخول وإعدادات اللغة.</li>
+                        <li><strong>الوظيفية:</strong> لتذكر تفضيلاتك مثل الثيم المفضل (فاتح/داكن) وتحسين تجربة التصفح.</li>
+                        <li><strong>التحليلية:</strong> لفهم كيفية استخدام الزوار للمنصة، مما يساعدنا على تحسين المحتوى والأدوات.</li>
+                    </ul>
+                    <p data-tr="privacySection6Text2">يمكنك تعطيل ملفات تعريف الارتباط من خلال إعدادات متصفحك في أي وقت. ومع ذلك، قد يؤثر ذلك على بعض وظائف المنصة. نوصي بإبقائها مفعلة للحصول على أفضل تجربة.</p>
+                </div>
+
+                <!-- 7. مشاركة البيانات مع أطراف ثالثة -->
+                <div class="legal-section">
+                    <h2><span class="num">٧</span> <span data-tr="privacySection7Title">مشاركة البيانات مع أطراف ثالثة</span></h2>
+                    <p data-tr="privacySection7Text">نحن لا نبيع أو نؤجر أو نشارك بياناتك الشخصية مع أطراف ثالثة لأغراض تسويقية. قد نشارك بياناتك في الحالات التالية:</p>
+                    <ul data-tr="privacySection7List">
+                        <li><strong>مزودو الخدمات:</strong> شركات موثوقة تساعدنا في تشغيل المنصة (مثل استضافة الخوادم، وتحليل البيانات)، وتكون ملزمة باتفاقيات سرية صارمة.</li>
+                        <li><strong>الالتزام القانوني:</strong> إذا طلبت منا الجهات القضائية أو التنظيمية تقديم البيانات بموجب القانون.</li>
+                        <li><strong>حماية الحقوق:</strong> للدفاع عن حقوقنا القانونية، أو حماية سلامة المنصة والمستخدمين.</li>
+                    </ul>
+                    <div class="highlight-box" data-tr="privacySection7Note">
+                        <strong>🔒 خصوصية ملفاتك:</strong> نؤكد مجدداً أن ملفات الفيديو والصوت التي تعالجها لا يتم رفعها أو مشاركتها مع أي طرف ثالث. جميع العمليات تتم محلياً على جهازك.
+                    </div>
+                </div>
+
+                <!-- 8. أمان البيانات -->
+                <div class="legal-section">
+                    <h2><span class="num">٨</span> <span data-tr="privacySection8Title">أمان البيانات</span></h2>
+                    <p data-tr="privacySection8Text">نحن نطبق إجراءات أمنية تقنية وتنظيمية صارمة لحماية بياناتك من الوصول غير المصرح به، أو التعديل، أو الإفصاح، أو التدمير. تشمل هذه الإجراءات:</p>
+                    <ul data-tr="privacySection8List">
+                        <li><strong>التشفير:</strong> استخدام بروتوكول HTTPS لتأمين جميع الاتصالات بين جهازك وخوادمنا.</li>
+                        <li><strong>الوصول المحدود:</strong> تقييد الوصول إلى البيانات الشخصية على الموظفين المصرح لهم فقط، والذين يخضعون لاتفاقيات سرية.</li>
+                        <li><strong>المراقبة المستمرة:</strong> أنظمة كشف التسلل والمراقبة الأمنية لحماية المنصة من الهجمات الإلكترونية.</li>
+                        <li><strong>التحديثات الدورية:</strong> تحديث أنظمتنا وبرمجياتنا باستمرار لسد الثغرات الأمنية.</li>
+                    </ul>
+                    <p data-tr="privacySection8Text2">على الرغم من جهودنا، لا يمكننا ضمان الأمان المطلق للبيانات المنقولة عبر الإنترنت. ننصحك باستخدام كلمات مرور قوية وتحديث متصفحك بانتظام.</p>
+                </div>
+
+                <!-- 9. الاحتفاظ بالبيانات -->
+                <div class="legal-section">
+                    <h2><span class="num">٩</span> <span data-tr="privacySection9Title">الاحتفاظ بالبيانات</span></h2>
+                    <p data-tr="privacySection9Text">نحتفظ ببياناتك الشخصية فقط طالما كانت ضرورية للأغراض التي جمعت من أجلها، وفقاً للقوانين واللوائح المعمول بها. معايير الاحتفاظ تشمل:</p>
+                    <ul data-tr="privacySection9List">
+                        <li><strong>بيانات التواصل:</strong> نحتفظ بسجلات المراسلات لمدة تصل إلى 3 سنوات للرد على الاستفسارات المستقبلية.</li>
+                        <li><strong>بيانات التحليل:</strong> البيانات المجمعة (غير الشخصية) قد تُحتفظ بها لفترة أطول لأغراض إحصائية.</li>
+                        <li><strong>البيانات التقنية:</strong> سجلات الخادم تحتفظ بها لمدة 30 يوماً لأغراض أمنية، ثم تُحذف تلقائياً.</li>
+                    </ul>
+                    <p data-tr="privacySection9Text2">يمكنك طلب حذف بياناتك الشخصية في أي وقت عبر التواصل معنا، وسنقوم بحذفها في غضون 30 يوماً من تاريخ الطلب.</p>
+                </div>
+
+                <!-- 10. حقوق المستخدمين -->
+                <div class="legal-section">
+                    <h2><span class="num">١٠</span> <span data-tr="privacySection10Title">حقوقك كمستخدم</span></h2>
+                    <p data-tr="privacySection10Text">نحن نلتزم بمنحك التحكم الكامل في بياناتك الشخصية. يحق لك:</p>
+                    <ul data-tr="privacySection10List">
+                        <li><strong>حق الوصول:</strong> طلب نسخة من جميع البيانات الشخصية التي نحتفظ بها عنك.</li>
+                        <li><strong>حق التصحيح:</strong> طلب تعديل أي بيانات غير دقيقة أو غير مكتملة.</li>
+                        <li><strong>حق الحذف:</strong> طلب حذف بياناتك الشخصية بالكامل ("الحق في النسيان").</li>
+                        <li><strong>حق الاعتراض:</strong> الاعتراض على معالجة بياناتك لأغراض معينة، مثل التسويق المباشر.</li>
+                        <li><strong>حق نقل البيانات:</strong> طلب نقل بياناتك إلى منصة أخرى بتنسيق قابل للقراءة.</li>
+                        <li><strong>حق سحب الموافقة:</strong> سحب موافقتك على معالجة بياناتك في أي وقت.</li>
+                    </ul>
+                    <div class="highlight-box" data-tr="privacySection10Note">
+                        <strong>📧 لممارسة حقوقك:</strong> تواصل معنا عبر <a href="support.html" style="color:var(--accent);font-weight:700;">صفحة الدعم الفني</a> أو أرسل بريداً إلكترونياً إلى <strong style="color:var(--accent);">hisham123awad@gmail.com</strong>. سنرد على طلبك خلال 30 يوماً كحد أقصى.
+                    </div>
+                </div>
+
+                <!-- 11. خصوصية الأطفال -->
+                <div class="legal-section">
+                    <h2><span class="num">١١</span> <span data-tr="privacySection11Title">خصوصية الأطفال</span></h2>
+                    <p data-tr="privacySection11Text">منصتنا غير موجهة للأطفال تحت سن ١٣ عاماً، ولا نقوم عمداً بجمع معلومات شخصية من الأطفال. إذا اكتشفنا أننا جمعنا بيانات من طفل دون موافقة ولي الأمر، سنقوم بحذف هذه البيانات فوراً.</p>
+                    <p data-tr="privacySection11Text2">إذا كنت ولي أمر وتعتقد أن طفلك قد قدم لنا معلومات شخصية، يرجى التواصل معنا فوراً لاتخاذ الإجراءات اللازمة.</p>
+                </div>
+
+                <!-- 12. نقل البيانات دولياً -->
+                <div class="legal-section">
+                    <h2><span class="num">١٢</span> <span data-tr="privacySection12Title">نقل البيانات دولياً</span></h2>
+                    <p data-tr="privacySection12Text">نحن نعمل على خوادم موزعة في مناطق مختلفة حول العالم. قد يتم نقل بياناتك ومعالجتها في دول تختلف عن دولة إقامتك، والتي قد تكون لها قوانين حماية بيانات مختلفة. ومع ذلك، نلتزم بتطبيق نفس مستوى الحماية على بياناتك بغض النظر عن مكان معالجتها.</p>
+                    <p data-tr="privacySection12Text2">نحن نضمن أن جميع عمليات نقل البيانات تتم وفقاً للقوانين المعمول بها، بما في ذلك استخدام البنود التعاقدية القياسية المعتمدة من قبل المفوضية الأوروبية عند الحاجة.</p>
+                </div>
+
+                <!-- 13. الامتثال للقوانين -->
+                <div class="legal-section">
+                    <h2><span class="num">١٣</span> <span data-tr="privacySection13Title">الامتثال للقوانين (GDPR & CCPA)</span></h2>
+                    <p data-tr="privacySection13Text">نحن نلتزم بالامتثال للوائح حماية البيانات العامة (GDPR) في الاتحاد الأوروبي، وقانون خصوصية المستهلك في كاليفورنيا (CCPA)، وغيرها من قوانين الخصوصية المعمول بها عالمياً.</p>
+                    <ul data-tr="privacySection13List">
+                        <li><strong>GDPR:</strong> نضمن الحق في الوصول، والتصحيح، والحذف، والاعتراض، ونقل البيانات لجميع المستخدمين في الاتحاد الأوروبي.</li>
+                        <li><strong>CCPA:</strong> نضمن للمقيمين في كاليفورنيا الحق في معرفة البيانات التي نجمعها، وطلب حذفها، وعدم بيعها (نحن لا نبيع البيانات أصلاً).</li>
+                        <li><strong>القوانين المحلية:</strong> نلتزم بقوانين الخصوصية في جمهورية مصر العربية وجميع الدول التي نخدمها.</li>
+                    </ul>
+                </div>
+
+                <!-- 14. روابط خارجية -->
+                <div class="legal-section">
+                    <h2><span class="num">١٤</span> <span data-tr="privacySection14Title">روابط خارجية</span></h2>
+                    <p data-tr="privacySection14Text">قد تحتوي منصتنا على روابط لمواقع أو خدمات خارجية لا نتحكم في سياسات الخصوصية الخاصة بها. ننصحك بمراجعة سياسات الخصوصية لهذه المواقع قبل تقديم أي معلومات شخصية. نحن غير مسؤولين عن ممارسات الخصوصية للمواقع الخارجية.</p>
+                </div>
+
+                <!-- 15. التغييرات على السياسة -->
+                <div class="legal-section">
+                    <h2><span class="num">١٥</span> <span data-tr="privacySection15Title">التغييرات على سياسة الخصوصية</span></h2>
+                    <p data-tr="privacySection15Text">نحتفظ بالحق في تعديل أو تحديث هذه السياسة في أي وقت. سيتم نشر التغييرات على هذه الصفحة مع تحديث تاريخ "آخر تحديث" في الأعلى. التغييرات الجوهرية قد يتم إخطارك بها عبر البريد الإلكتروني أو إشعار على المنصة.</p>
+                    <p data-tr="privacySection15Text2">ننصح بمراجعة هذه الصفحة دورياً للاطلاع على أي تغييرات. استمرارك في استخدام المنصة بعد سريان التغييرات يعتبر قبولاً منك للسياسة المحدثة.</p>
+                </div>
+
+                <!-- 16. الاتصال بنا -->
+                <div class="legal-section">
+                    <h2><span class="num">١٦</span> <span data-tr="privacySection16Title">الاتصال بنا</span></h2>
+                    <p data-tr="privacySection16Text">إذا كان لديك أي استفسار أو تعليق أو طلب بخصوص سياسة الخصوصية هذه، أو إذا كنت ترغب في ممارسة حقوقك المتعلقة ببياناتك، نرحب بتواصلك معنا عبر القنوات التالية:</p>
+                    <ul data-tr="privacySection16List">
+                        <li><strong>البريد الإلكتروني:</strong> <a href="mailto:hisham123awad@gmail.com" style="color:var(--accent);font-weight:700;">hisham123awad@gmail.com</a></li>
+                        <li><strong>صفحة الدعم الفني:</strong> <a href="support.html" style="color:var(--accent);font-weight:700;">support.html</a></li>
+                        <li><strong>واتساب:</strong> <a href="https://wa.me/201501168668" style="color:var(--accent);font-weight:700;">+20 150 116 8668</a></li>
+                    </ul>
+                    <p data-tr="privacySection16Text2">نحن ملتزمون بالرد على جميع الاستفسارات المتعلقة بالخصوصية في غضون 30 يوماً من تاريخ الاستلام.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-ftr">
+        <div class="ctn">
+            <div class="ftr-logo" translate="no">CB<em>BX</em></div>
+            <div class="ftr-stars" aria-label="تقييم 5 نجوم">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <nav class="ftr-links">
+                <a href="privacy.html" class="ftr-link" data-tr="privacy">سياسة الخصوصية</a>
+                <a href="terms.html" class="ftr-link" data-tr="terms">شروط الخدمة</a>
+                <a href="support.html" class="ftr-link contact-link" data-tr="supportLink">📧 تواصل معنا</a>
+                <a href="about.html" class="ftr-link" data-tr="aboutLink">من نحن</a>
+                <a href="blog.html" class="ftr-link" data-tr="blogLink">الأدوات</a>
+            </nav>
+            <p class="ftr-copy" data-tr="copy">&copy; 2026 CBBX</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="الرجوع للأعلى">↑</button>
+
+    <script src="core.js"></script>
+    <script src="tools-loader.js"></script>
+</body>
+</html>

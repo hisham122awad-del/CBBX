@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBBX — تواصل معنا</title>
+    <meta name="description" content="تواصل مع فريق دعم CBBX. نحن هنا للإجابة على استفساراتك، ومقترحاتك، ومشاكلك التقنية. نرد خلال 24 ساعة.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== تنسيق عام ===== */
+        .legal-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 28px;
+            padding: 40px 44px;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.04);
+        }
+        .legal-header {
+            text-align: center;
+            padding-bottom: 28px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 32px;
+        }
+        .legal-header h1 {
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--txt);
+            margin-bottom: 6px;
+        }
+        .legal-header .sub {
+            color: var(--txt2);
+            font-size: 16px;
+        }
+        .legal-section {
+            margin-bottom: 30px;
+        }
+        .legal-section h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--txt);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legal-section h2 .num {
+            color: var(--accent);
+            font-size: 16px;
+            font-weight: 900;
+            background: var(--glow-s);
+            padding: 2px 12px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+        }
+        .legal-section p {
+            color: var(--txt2);
+            font-size: 16.5px;
+            line-height: 2;
+            margin-bottom: 8px;
+        }
+        .legal-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+        .legal-section ul li {
+            padding: 6px 0 6px 30px;
+            position: relative;
+            color: var(--txt2);
+            font-size: 16px;
+            line-height: 1.8;
+            border-bottom: 1px solid var(--border);
+        }
+        .legal-section ul li:last-child {
+            border-bottom: none;
+        }
+        .legal-section ul li::before {
+            content: "•";
+            position: absolute;
+            right: 0;
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 20px;
+        }
+        .legal-section .highlight-box {
+            background: var(--surface2);
+            padding: 16px 20px;
+            border-radius: 14px;
+            border-right: 4px solid var(--accent);
+            margin: 12px 0;
+        }
+
+        .back-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--txt2);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 40px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .back-row:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateX(-4px);
+        }
+        .back-row svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+        }
+
+        /* ===== تنسيق نموذج التواصل ===== */
+        .support-form .form-group {
+            margin-bottom: 20px;
+        }
+        .support-form label {
+            display: block;
+            font-weight: 700;
+            color: var(--txt);
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+        .support-form input,
+        .support-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 14px;
+            border: 2px solid var(--border);
+            background: var(--bg);
+            color: var(--txt);
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .support-form input:focus,
+        .support-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--glow-soft);
+        }
+        .support-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .support-form input::placeholder,
+        .support-form textarea::placeholder {
+            color: var(--txt2);
+            opacity: 0.6;
+        }
+
+        /* ===== أزرار التواصل ===== */
+        .contact-options {
+            display: none;
+            gap: 16px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .contact-options.visible {
+            display: flex;
+        }
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 32px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            text-decoration: none;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .contact-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+        .contact-btn.whatsapp:hover {
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
+        }
+        .contact-btn.email {
+            background: linear-gradient(135deg, #EA4335, #C5221F);
+        }
+        .contact-btn.email:hover {
+            box-shadow: 0 8px 30px rgba(234, 67, 53, 0.35);
+        }
+        .contact-btn .btn-icon {
+            font-size: 24px;
+        }
+        .contact-btn .btn-label {
+            font-size: 16px;
+        }
+
+        /* ===== رسالة الاختيار ===== */
+        .choice-message {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--txt);
+            margin: 10px 0 0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .choice-message.visible {
+            opacity: 1;
+        }
+
+        /* ===== زر الإرسال ===== */
+        .submit-btn {
+            display: inline-block;
+            padding: 14px 48px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: 800;
+            border: none;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 20px var(--glow);
+            width: 100%;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 8px 32px var(--glow-strong);
+        }
+        .submit-btn.hidden {
+            display: none;
+        }
+
+        /* ===== رسالة الشكر ===== */
+        .thankyou-msg {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 20px;
+            background: var(--surface2);
+            border-radius: 20px;
+            border: 2px solid #22c55e;
+        }
+        .thankyou-msg.visible {
+            display: block;
+        }
+        .thankyou-msg h2 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #22c55e;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .thankyou-msg p {
+            color: var(--txt2);
+            font-size: 16px;
+        }
+
+        /* ===== بطاقات التواصل المباشر ===== */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .contact-card {
+            background: var(--surface2);
+            padding: 18px 16px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+        .contact-card .cc-icon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .contact-card .cc-label {
+            font-weight: 700;
+            color: var(--txt);
+            font-size: 14px;
+            display: block;
+        }
+        .contact-card .cc-value {
+            color: var(--txt2);
+            font-size: 14px;
+            word-break: break-all;
+        }
+        .contact-card .cc-value a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .contact-card .cc-value a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== التجاوب ===== */
+        @media(max-width:700px) {
+            .legal-box { padding: 24px 18px; }
+            .legal-header h1 { font-size: 28px; }
+            .legal-section h2 { font-size: 20px; }
+            .contact-btn {
+                padding: 12px 20px;
+                font-size: 14px;
+                width: 100%;
+                justify-content: center;
+            }
+            .choice-message { font-size: 16px; }
+            .contact-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-hdr">
+        <div class="hdr-inner">
+            <a href="index.html" class="logo-block" translate="no" style="text-decoration:none;">
+                <div class="logo-box">CB<em>BX</em></div>
+            </a>
+            <a href="index.html" class="nav-pill" data-tr="navHome" style="text-decoration:none;">الرئيسية</a>
+            <div class="tools-wrap">
+                <button class="tools-wrap-btn">
+                    <span data-tr="navTools">الأدوات</span>
+                    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="tools-dd" id="toolsDd"></ul>
+            </div>
+            <a href="activation-code.html" class="nav-pill" data-tr="navActivation" style="text-decoration:none;">كود تفعيل</a>
+            <div class="hdr-spacer"></div>
+            <button class="ico-btn" id="themeBtn" aria-label="تبديل الثيم">
+                <svg class="sun-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+            </button>
+            <div class="lang-wrap">
+                <button class="lang-btn" id="langBtn">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+                    <span id="langLabel">AR</span>
+                </button>
+                <ul class="lang-menu" id="langMenu"></ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    المحتوى الرئيسي — تواصل معنا
+    ============================================================ -->
+    <div class="ctn" style="padding-top: calc(var(--hh) + 40px); padding-bottom: 80px;">
+        <div class="back-row" onclick="window.location.href='index.html'" style="margin-bottom:24px">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            <span data-tr="navHome">الرئيسية</span>
+        </div>
+
+        <div class="legal-box">
+            <div class="legal-header">
+                <h1 data-tr="supportTitle">📞 تواصل معنا</h1>
+                <div class="sub" data-tr="supportSub">نحن هنا لمساعدتك. فريق دعم CBBX ينتظر رسالتك.</div>
+            </div>
+            <div class="legal-body">
+
+                <!-- ===== قسم: لماذا تتواصل معنا؟ ===== -->
+                <div class="legal-section">
+                    <h2><span class="num">①</span> <span data-tr="supportWhyTitle">لماذا تتواصل معنا؟</span></h2>
+                    <p data-tr="supportWhyText">فريق دعم CBBX متخصص في مساعدة المستخدمين على تحقيق أقصى استفادة من منصتنا. سواء كنت تواجه مشكلة تقنية، أو لديك اقتراح لتطوير أداة، أو تريد الاستفسار عن إحدى خدماتنا، فنحن هنا للإجابة على جميع استفساراتك. نضمن لك:</p>
+                    <ul data-tr="supportWhyList">
+                        <li><strong>الرد السريع:</strong> نستهدف الرد على جميع الاستفسارات خلال 24 ساعة عمل.</li>
+                        <li><strong>الدعم التقني المتخصص:</strong> فريقنا لديه خبرة عميقة في أدوات تحرير الفيديو والصوت.</li>
+                        <li><strong>الاستماع للاقتراحات:</strong> آرائكم هي ما يدفعنا للتطوير، ونأخذ كل اقتراح بجدية.</li>
+                        <li><strong>حلول عملية:</strong> نقدم حلولاً عملية وسريعة لمشاكلك، مع شرح مبسط للخطوات.</li>
+                    </ul>
+                    <div class="highlight-box" data-tr="supportWhyNote">
+                        <strong>💡 نصيحة:</strong> قبل التواصل، تأكد من مراجعة <a href="faq.html" style="color:var(--accent);font-weight:700;">الأسئلة الشائعة (FAQ)</a> – ربما تجد إجابة سؤالك هناك!
+                    </div>
+                </div>
+
+                <!-- ===== قسم: قنوات التواصل المباشر ===== -->
+                <div class="legal-section">
+                    <h2><span class="num">②</span> <span data-tr="supportChannelsTitle">قنوات التواصل المباشر</span></h2>
+                    <p data-tr="supportChannelsText">يمكنك التواصل معنا مباشرة عبر أي من القنوات التالية. اختر ما يناسبك:</p>
+                    <div class="contact-cards">
+                        <div class="contact-card">
+                            <span class="cc-icon">💬</span>
+                            <span class="cc-label" data-tr="supportWhatsAppLabel">واتساب</span>
+                            <span class="cc-value">
+                                <a href="https://wa.me/201501168668" target="_blank">+20 150 116 8668</a>
+                            </span>
+                        </div>
+                        <div class="contact-card">
+                            <span class="cc-icon">📧</span>
+                            <span class="cc-label" data-tr="supportEmailLabel">البريد الإلكتروني</span>
+                            <span class="cc-value">
+                                <a href="mailto:hisham123awad@gmail.com">hisham123awad@gmail.com</a>
+                            </span>
+                        </div>
+                        <div class="contact-card">
+                            <span class="cc-icon">🌐</span>
+                            <span class="cc-label" data-tr="supportWebsiteLabel">الموقع الرسمي</span>
+                            <span class="cc-value">
+                                <a href="index.html" target="_blank">cb bx.com</a>
+                            </span>
+                        </div>
+                        <div class="contact-card">
+                            <span class="cc-icon">🕐</span>
+                            <span class="cc-label" data-tr="supportHoursLabel">ساعات العمل</span>
+                            <span class="cc-value" data-tr="supportHours">السبت – الخميس: 10 ص – 10 م</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== قسم: نموذج التواصل ===== -->
+                <div class="legal-section">
+                    <h2><span class="num">③</span> <span data-tr="supportFormTitle">أرسل رسالتك</span></h2>
+                    <p data-tr="supportFormDesc">املأ النموذج أدناه، ثم اختر طريقة التواصل المفضلة لديك. سنرد عليك في أقرب وقت.</p>
+
+                    <form class="support-form" id="supportForm" onsubmit="return submitSupport(event)">
+                        <div class="form-group">
+                            <label for="supportName" data-tr="supportNameLabel">👤 الاسم الكامل</label>
+                            <input type="text" id="supportName" placeholder="أدخل اسمك الثلاثي" data-tr-placeholder="supportNamePlaceholder" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="supportMessage" data-tr="supportMessageLabel">✉️ الرسالة</label>
+                            <textarea id="supportMessage" placeholder="اكتب مشكلتك أو استفسارك أو اقتراحك بالتفصيل..." data-tr-placeholder="supportMessagePlaceholder" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn" data-tr="supportSubmit">📨 إرسال الرسالة</button>
+
+                        <div class="choice-message" id="choiceMessage">
+                            <span data-tr="supportChooseMethod">📌 اختر طريقة التواصل المفضلة:</span>
+                        </div>
+
+                        <div class="contact-options" id="contactOptions">
+                            <a href="#" class="contact-btn whatsapp" id="whatsappBtn" target="_blank">
+                                <span class="btn-icon">💬</span>
+                                <span class="btn-label" data-tr="supportWhatsAppBtn">واتساب</span>
+                            </a>
+                            <a href="#" class="contact-btn email" id="emailBtn" target="_blank">
+                                <span class="btn-icon">📧</span>
+                                <span class="btn-label" data-tr="supportEmailBtn">البريد الإلكتروني</span>
+                            </a>
+                        </div>
+                    </form>
+
+                    <div class="thankyou-msg" id="thankYouMsg">
+                        <h2>
+                            <span style="margin-left:8px;">✅</span>
+                            <span data-tr="supportThankYouTitle">شكراً لتواصلك!</span>
+                        </h2>
+                        <p data-tr="supportThankYouText">تم استلام رسالتك بنجاح. اختر طريقة التواصل المناسبة، وسنرد عليك خلال 24 ساعة.</p>
+                        <p style="margin-top:8px;font-size:14px;color:var(--txt2);" data-tr="supportThankYouNote">🔹 ننصح بفتح واتساب أو جيميل على جهازك لسهولة الإرسال.</p>
+                    </div>
+                </div>
+
+                <!-- ===== قسم: الأسئلة الشائعة السريعة ===== -->
+                <div class="legal-section">
+                    <h2><span class="num">④</span> <span data-tr="supportFaqTitle">أسئلة سريعة قد تهمك</span></h2>
+                    <p data-tr="supportFaqDesc">قبل أن ترسل لنا رسالة، قد تجد إجابة سؤالك هنا:</p>
+                    <ul data-tr="supportFaqList">
+                        <li><strong>كيف أستخدم أداة قص الصمت؟</strong> – اختر الفيديو، واضبط عتبة الصمت، ثم اضغط "معالجة".</li>
+                        <li><strong>هل أدوات CBBX مجانية؟</strong> – نعم، جميع أدواتنا مجانية 100% بدون أي رسوم خفية.</li>
+                        <li><strong>هل يتم تخزين ملفاتي على خوادمكم؟</strong> – لا، جميع المعالجات تتم محلياً على جهازك.</li>
+                        <li><strong>كيف أحصل على كود التفعيل؟</strong> – من صفحة <a href="activation-code.html" style="color:var(--accent);font-weight:700;">كود التفعيل</a>.</li>
+                        <li><strong>كيف يمكنني اقتراح أداة جديدة؟</strong> – أرسل لنا اقتراحك عبر هذا النموذج وسننظر فيه فوراً.</li>
+                    </ul>
+                    <div class="highlight-box" data-tr="supportFaqNote">
+                        <strong>📖 لمزيد من الإجابات:</strong> تفضل بزيارة صفحة <a href="faq.html" style="color:var(--accent);font-weight:700;">الأسئلة الشائعة (FAQ)</a> الكاملة.
+                    </div>
+                </div>
+
+                <!-- ===== قسم: سياسة الرد والخصوصية ===== -->
+                <div class="legal-section">
+                    <h2><span class="num">⑤</span> <span data-tr="supportPolicyTitle">سياسة الرد والخصوصية</span></h2>
+                    <p data-tr="supportPolicyText">نحن نلتزم بخصوصية بياناتك. جميع المعلومات التي ترسلها عبر نموذج التواصل تُستخدم فقط للرد على استفسارك، ولا يتم مشاركتها مع أي طرف ثالث. نحرص على:</p>
+                    <ul data-tr="supportPolicyList">
+                        <li><strong>الرد خلال 24 ساعة:</strong> في أيام العمل (السبت – الخميس).</li>
+                        <li><strong>السرية التامة:</strong> لا يتم تخزين أو استخدام بياناتك لأي غرض تسويقي.</li>
+                        <li><strong>التواصل الآمن:</strong> جميع قنوات التواصل لدينا مشفرة وآمنة.</li>
+                        <li><strong>التعامل باحترام:</strong> فريقنا مدرب على التعامل بلطف واحترافية مع جميع الاستفسارات.</li>
+                    </ul>
+                    <p data-tr="supportPolicyText2">إذا كنت تفضل عدم مشاركة بياناتك عبر النموذج، يمكنك التواصل مباشرة عبر واتساب أو البريد الإلكتروني المذكورين أعلاه.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-ftr">
+        <div class="ctn">
+            <div class="ftr-logo" translate="no">CB<em>BX</em></div>
+            <div class="ftr-stars" aria-label="تقييم 5 نجوم">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <nav class="ftr-links">
+                <a href="privacy.html" class="ftr-link" data-tr="privacy">سياسة الخصوصية</a>
+                <a href="terms.html" class="ftr-link" data-tr="terms">شروط الخدمة</a>
+                <a href="support.html" class="ftr-link contact-link" data-tr="supportLink">📧 تواصل معنا</a>
+                <a href="about.html" class="ftr-link" data-tr="aboutLink">من نحن</a>
+                <a href="blog.html" class="ftr-link" data-tr="blogLink">الأدوات</a>
+            </nav>
+            <p class="ftr-copy" data-tr="copy">&copy; 2026 CBBX</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="الرجوع للأعلى">↑</button>
+
+    <script src="core.js"></script>
+    <script src="tools-loader.js"></script>
+
+    <!-- ============================================================
+    سكريبت تواصل معنا
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            const form = document.getElementById('supportForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const nameInput = document.getElementById('supportName');
+            const messageInput = document.getElementById('supportMessage');
+            const contactOptions = document.getElementById('contactOptions');
+            const choiceMessage = document.getElementById('choiceMessage');
+            const thankyouMsg = document.getElementById('thankYouMsg');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const emailBtn = document.getElementById('emailBtn');
+
+            let userName = '';
+            let userMessage = '';
+
+            window.submitSupport = function(event) {
+                event.preventDefault();
+
+                userName = nameInput.value.trim();
+                userMessage = messageInput.value.trim();
+
+                if (!userName || !userMessage) {
+                    alert('⚠️ يرجى ملء جميع الحقول المطلوبة.');
+                    return false;
+                }
+
+                submitBtn.classList.add('hidden');
+                choiceMessage.classList.add('visible');
+                contactOptions.classList.add('visible');
+
+                const fullMsg = `الاسم: ${userName}\nالرسالة: ${userMessage}\n---\nتم الإرسال عبر CBBX Support`;
+
+                const waUrl = `https://wa.me/201501168668?text=${encodeURIComponent(fullMsg)}`;
+                whatsappBtn.href = waUrl;
+
+                const subject = 'رسالة دعم فني من ' + userName;
+                const gmailUrl =
+                    `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=hisham123awad@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullMsg)}`;
+                emailBtn.href = gmailUrl;
+
+                thankyouMsg.classList.add('visible');
+
+                return false;
+            };
+
+            console.log('✅ CBBX Support Page (Improved) loaded.');
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBBX — شروط الخدمة</title>
+    <meta name="description" content="شروط خدمة منصة CBBX - تعرف على حقوقك والتزاماتك عند استخدام أدواتنا ومنصتنا.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .legal-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 28px;
+            padding: 40px 44px;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.04);
+        }
+        .legal-header {
+            text-align: center;
+            padding-bottom: 28px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 32px;
+        }
+        .legal-header h1 {
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--txt);
+            margin-bottom: 6px;
+        }
+        .legal-header .sub {
+            color: var(--txt2);
+            font-size: 15px;
+        }
+        .legal-section {
+            margin-bottom: 30px;
+        }
+        .legal-section h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--txt);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legal-section h2 .num {
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: 900;
+            background: var(--glow-s);
+            padding: 2px 12px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+        }
+        .legal-section p {
+            color: var(--txt2);
+            font-size: 16.5px;
+            line-height: 2;
+            margin-bottom: 8px;
+        }
+        .legal-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+        .legal-section ul li {
+            padding: 6px 0 6px 30px;
+            position: relative;
+            color: var(--txt2);
+            font-size: 16px;
+            line-height: 1.8;
+            border-bottom: 1px solid var(--border);
+        }
+        .legal-section ul li:last-child {
+            border-bottom: none;
+        }
+        .legal-section ul li::before {
+            content: "•";
+            position: absolute;
+            right: 0;
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 20px;
+        }
+        .legal-section .highlight-box {
+            background: var(--surface2);
+            padding: 16px 20px;
+            border-radius: 14px;
+            border-right: 4px solid var(--accent);
+            margin: 12px 0;
+        }
+        .back-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--txt2);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 40px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .back-row:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateX(-4px);
+        }
+        .back-row svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+        }
+        @media(max-width:700px) {
+            .legal-box { padding: 24px 18px; }
+            .legal-header h1 { font-size: 28px; }
+            .legal-section h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-hdr">
+        <div class="hdr-inner">
+            <a href="index.html" class="logo-block" translate="no" style="text-decoration:none;">
+                <div class="logo-box">CB<em>BX</em></div>
+            </a>
+            <a href="index.html" class="nav-pill" data-tr="navHome" style="text-decoration:none;">الرئيسية</a>
+            <div class="tools-wrap">
+                <button class="tools-wrap-btn">
+                    <span data-tr="navTools">الأدوات</span>
+                    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="tools-dd" id="toolsDd"></ul>
+            </div>
+            <a href="activation-code.html" class="nav-pill" data-tr="navActivation" style="text-decoration:none;">كود تفعيل</a>
+            <div class="hdr-spacer"></div>
+            <button class="ico-btn" id="themeBtn" aria-label="تبديل الثيم">
+                <svg class="sun-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+            </button>
+            <div class="lang-wrap">
+                <button class="lang-btn" id="langBtn">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+                    <span id="langLabel">AR</span>
+                </button>
+                <ul class="lang-menu" id="langMenu"></ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    المحتوى الرئيسي — شروط الخدمة
+    ============================================================ -->
+    <div class="ctn" style="padding-top: calc(var(--hh) + 40px); padding-bottom: 80px;">
+        <div class="back-row" onclick="window.location.href='index.html'" style="margin-bottom:24px">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            <span data-tr="navHome">الرئيسية</span>
+        </div>
+
+        <div class="legal-box">
+            <div class="legal-header">
+                <h1 data-tr="termsTitle">📜 شروط الخدمة</h1>
+                <div class="sub" data-tr="termsUpdate">آخر تحديث: 25 يوليو 2026</div>
+            </div>
+            <div class="legal-body">
+
+                <!-- 1. قبول الشروط -->
+                <div class="legal-section">
+                    <h2><span class="num">١</span> <span data-tr="termsSection1Title">قبول الشروط</span></h2>
+                    <p data-tr="termsSection1Text">باستخدامك لموقع CBBX (المشار إليه بـ "المنصة" أو "نحن")، فإنك توافق على الالتزام بهذه الشروط والأحكام بالكامل. إذا كنت لا توافق على أي جزء من هذه الشروط، يرجى التوقف فوراً عن استخدام المنصة. نوصي بقراءة هذه الشروط بعناية قبل استخدام أي من أدواتنا أو خدماتنا، لأنها تشكل اتفاقية قانونية ملزمة بينك وبين CBBX.</p>
+                    <div class="highlight-box" data-tr="termsSection1Note">
+                        <strong>ملاحظة مهمة:</strong> قد تُعدَّل هذه الشروط من وقت لآخر، وسيتم إخطارك بأي تغييرات جوهرية عبر البريد الإلكتروني أو إشعار على المنصة. استمرارك في استخدام المنصة بعد التعديلات يعني قبولك للشروط الجديدة.
+                    </div>
+                </div>
+
+                <!-- 2. تعريفات -->
+                <div class="legal-section">
+                    <h2><span class="num">٢</span> <span data-tr="termsSection2Title">التعريفات</span></h2>
+                    <p data-tr="termsSection2Text">في هذه الشروط، يُقصد بكل من:</p>
+                    <ul data-tr="termsSection2List">
+                        <li><strong>المنصة:</strong> موقع CBBX الإلكتروني وجميع أدواته وخدماته المقدمة عبر الإنترنت.</li>
+                        <li><strong>المستخدم:</strong> أي شخص طبيعي أو اعتباري يستخدم المنصة بأي شكل من الأشكال.</li>
+                        <li><strong>المحتوى:</strong> كل ما يتم رفعه أو معالجته أو إنشاؤه بواسطة المستخدم عبر المنصة، بما في ذلك الفيديوهات والصور والملفات الصوتية والنصوص.</li>
+                        <li><strong>الأدوات:</strong> البرمجيات والتطبيقات والخدمات التفاعلية المتاحة على المنصة لتحرير الفيديو والصوت وغيرها.</li>
+                    </ul>
+                </div>
+
+                <!-- 3. الحساب والمسؤولية -->
+                <div class="legal-section">
+                    <h2><span class="num">٣</span> <span data-tr="termsSection3Title">الحساب ومسؤولية المستخدم</span></h2>
+                    <p data-tr="termsSection3Text">لا تتطلب المنصة إنشاء حساب للاستخدام الأساسي للأدوات. ومع ذلك، قد نطلب منك في بعض الخدمات المتقدمة إنشاء حساب. أنت مسؤول عن:</p>
+                    <ul data-tr="termsSection3List">
+                        <li><strong>صحة المعلومات:</strong> تزويدنا بمعلومات دقيقة وكاملة عند التسجيل.</li>
+                        <li><strong>أمان الحساب:</strong> الحفاظ على سرية بيانات الدخول الخاصة بك، وإخطارنا فوراً بأي اختراق مشتبه به.</li>
+                        <li><strong>النشاط:</strong> أنت المسؤول الوحيد عن جميع الأنشطة التي تتم من خلال حسابك.</li>
+                        <li><strong>العمر القانوني:</strong> يجب أن يكون عمرك ١٨ عاماً أو أكثر، أو لديك موافقة ولي الأمر إذا كنت أصغر سناً.</li>
+                    </ul>
+                </div>
+
+                <!-- 4. استخدام الأدوات -->
+                <div class="legal-section">
+                    <h2><span class="num">٤</span> <span data-tr="termsSection4Title">استخدام الأدوات والخدمات</span></h2>
+                    <p data-tr="termsSection4Text">جميع الأدوات المتاحة على المنصة مقدمة "كما هي" وبدون أي ضمانات صريحة أو ضمنية. نوصي بمراجعة التعليمات الخاصة بكل أداة بعناية قبل الاستخدام. أنت تتحمل المسؤولية الكاملة عن:</p>
+                    <ul data-tr="termsSection4List">
+                        <li><strong>جودة المخرجات:</strong> نتائج المعالجة تعتمد على جودة الملفات المدخلة وإعداداتك.</li>
+                        <li><strong>الامتثال للقوانين:</strong> يجب أن يكون المحتوى الذي تعالجه قانونياً ولا ينتهك حقوق الغير.</li>
+                        <li><strong>النسخ الاحتياطي:</strong> ننصح بعمل نسخ احتياطية لملفاتك قبل المعالجة، فالمنصة ليست مسؤولة عن فقدان البيانات.</li>
+                        <li><strong>الاستخدام المقبول:</strong> لا يجوز استخدام الأدوات لأغراض غير قانونية أو ضارة أو احتيالية.</li>
+                    </ul>
+                    <div class="highlight-box" data-tr="termsSection4Note">
+                        <strong>تنبيه هام:</strong> جميع عمليات المعالجة تتم محلياً على جهازك. نحن لا نخزن أو نشارك ملفاتك مع أي طرف ثالث، مما يضمن خصوصية تامة.
+                    </div>
+                </div>
+
+                <!-- 5. حقوق الملكية الفكرية -->
+                <div class="legal-section">
+                    <h2><span class="num">٥</span> <span data-tr="termsSection5Title">حقوق الملكية الفكرية</span></h2>
+                    <p data-tr="termsSection5Text">جميع المحتويات المنشورة على المنصة، بما في ذلك النصوص، والصور، والشعارات، والبرمجيات، والتصاميم، والعلامات التجارية، هي ملك حصري لـ CBBX أو مرخص لها، ومحمية بموجب قوانين حقوق النشر والعلامات التجارية وقوانين الملكية الفكرية الأخرى.</p>
+                    <p data-tr="termsSection5Text2">لا يجوز لك:</p>
+                    <ul data-tr="termsSection5List">
+                        <li><strong>النسخ أو التوزيع:</strong> إعادة إنتاج أو توزيع أو عرض أي محتوى من المنصة دون إذن خطي مسبق.</li>
+                        <li><strong>الهندسة العكسية:</strong> فك أو تفكيك أو هندسة عكسية أي جزء من البرمجيات أو الأدوات.</li>
+                        <li><strong>الاستخدام التجاري:</strong> استخدام اسم المنصة أو شعارها أو محتواها لأغراض تجارية دون ترخيص.</li>
+                        <li><strong>الانتحال:</strong> ادعاء ملكية أي من محتويات المنصة أو نسبتها لنفسك.</li>
+                    </ul>
+                    <p data-tr="termsSection5Text3">مع ذلك، تحتفظ بحقوق الملكية الكاملة للمحتوى الذي ترفعه أو تنشئه باستخدام أدواتنا، ونحن لا ندعي ملكية هذه الملفات.</p>
+                </div>
+
+                <!-- 6. الإخلاء من المسؤولية -->
+                <div class="legal-section">
+                    <h2><span class="num">٦</span> <span data-tr="termsSection6Title">إخلاء المسؤولية وحدود الضمان</span></h2>
+                    <p data-tr="termsSection6Text">نحن نبذل قصارى جهدنا لضمان دقة وموثوقية أدواتنا، لكننا لا نضمن:</p>
+                    <ul data-tr="termsSection6List">
+                        <li><strong>خلو الأدوات من الأخطاء:</strong> قد تحدث أخطاء تقنية أو عيوب في البرمجيات.</li>
+                        <li><strong>التوافق الكامل:</strong> قد لا تعمل بعض الأدوات مع جميع صيغ الملفات أو أنظمة التشغيل.</li>
+                        <li><strong>النتائج المثالية:</strong> قد تختلف النتائج حسب جودة المدخلات وإعدادات المستخدم.</li>
+                        <li><strong>استمرارية الخدمة:</strong> قد تتوقف الخدمة مؤقتاً لأعمال الصيانة أو لأسباب خارجة عن إرادتنا.</li>
+                    </ul>
+                    <p data-tr="termsSection6Text2">في حدود أقصى ما يسمح به القانون، لا نتحمل أي مسؤولية عن الأضرار المباشرة أو غير المباشرة أو العرضية أو الناتجة عن استخدام المنصة أو أدواتها.</p>
+                </div>
+
+                <!-- 7. السلوك المقبول -->
+                <div class="legal-section">
+                    <h2><span class="num">٧</span> <span data-tr="termsSection7Title">السلوك المقبول</span></h2>
+                    <p data-tr="termsSection7Text">نتوقع من جميع المستخدمين التصرف بمسؤولية واحترام. يُمنع منعاً باتاً:</p>
+                    <ul data-tr="termsSection7List">
+                        <li><strong>المحتوى غير القانوني:</strong> رفع أو معالجة أي محتوى ينتهك القوانين المحلية أو الدولية.</li>
+                        <li><strong>التحرش أو الإساءة:</strong> استخدام المنصة للمضايقة أو التهديد أو الإساءة للآخرين.</li>
+                        <li><strong>انتحال الشخصية:</strong> التظاهر بأنك شخص آخر أو تمثيل جهة دون تفويض.</li>
+                        <li><strong>الإخلال بالأمن:</strong> محاولة اختراق أو تعطيل أو تجاوز أنظمة الأمان الخاصة بالمنصة.</li>
+                        <li><strong>البريد العشوائي:</strong> إرسال رسائل غير مرغوب فيها أو ترويجية عبر المنصة.</li>
+                    </ul>
+                </div>
+
+                <!-- 8. الروابط الخارجية -->
+                <div class="legal-section">
+                    <h2><span class="num">٨</span> <span data-tr="termsSection8Title">الروابط الخارجية</span></h2>
+                    <p data-tr="termsSection8Text">قد تحتوي المنصة على روابط لمواقع أو خدمات تابعة لأطراف ثالثة. هذه الروابط مقدمة للتسهيل فقط، ونحن لا نتحكم في محتوى أو سياسات هذه المواقع. لا نتحمل أي مسؤولية عن:</p>
+                    <ul data-tr="termsSection8List">
+                        <li>محتوى أو دقة أي موقع خارجي.</li>
+                        <li>أي خسائر أو أضرار ناتجة عن استخدامك لهذه المواقع.</li>
+                        <li>سياسات الخصوصية أو ممارسات جمع البيانات لهذه المواقع.</li>
+                    </ul>
+                    <p data-tr="termsSection8Text2">ننصح بمراجعة شروط الخدمة وسياسات الخصوصية لأي موقع خارجي تزوره عبر روابطنا.</p>
+                </div>
+
+                <!-- 9. إنهاء الخدمة -->
+                <div class="legal-section">
+                    <h2><span class="num">٩</span> <span data-tr="termsSection9Title">إنهاء الخدمة</span></h2>
+                    <p data-tr="termsSection9Text">نحتفظ بالحق في تعليق أو إنهاء وصولك إلى المنصة أو أي جزء منها في أي وقت، دون إشعار مسبق، إذا:</p>
+                    <ul data-tr="termsSection9List">
+                        <li><strong>خرق الشروط:</strong> ثبت أنك انتهكت أي من هذه الشروط.</li>
+                        <li><strong>طلبات السلطات:</strong> تلقينا أمراً قضائياً أو طلباً من جهة رسمية بذلك.</li>
+                        <li><strong>لأسباب أمنية:</strong> لحماية سلامة المنصة أو المستخدمين الآخرين.</li>
+                        <li><strong>لأسباب تشغيلية:</strong> مثل توقف الخدمة أو إعادة هيكلة المنصة.</li>
+                    </ul>
+                    <p data-tr="termsSection9Text2">في حالة الإنهاء، ستظل البنود المتعلقة بالملكية الفكرية وإخلاء المسؤولية والحدود الزمنية سارية المفعول.</p>
+                </div>
+
+                <!-- 10. القانون المطبق -->
+                <div class="legal-section">
+                    <h2><span class="num">١٠</span> <span data-tr="termsSection10Title">القانون المطبق والنزاعات</span></h2>
+                    <p data-tr="termsSection10Text">تخضع هذه الشروط وتُفسر وفقاً لقوانين الجمهورية العربية المصرية، دون النظر إلى مبادئ تضارب القوانين. في حالة نشوب أي نزاع يتعلق بهذه الشروط أو باستخدام المنصة، يوافق الطرفان على محاولة حله ودياً أولاً، وفي حال عدم التوصل إلى حل، يُحال النزاع إلى المحاكم المختصة في مصر.</p>
+                    <div class="highlight-box" data-tr="termsSection10Note">
+                        <strong>ملاحظة:</strong> قد تنطبق قوانين محلية أخرى حسب مكان إقامتك، وننصح باستشارة مستشار قانوني إذا كنت غير متأكد من حقوقك والتزاماتك.
+                    </div>
+                </div>
+
+                <!-- 11. التعديلات والتحديثات -->
+                <div class="legal-section">
+                    <h2><span class="num">١١</span> <span data-tr="termsSection11Title">التعديلات والتحديثات</span></h2>
+                    <p data-tr="termsSection11Text">نحتفظ بالحق في تعديل أو تحديث هذه الشروط في أي وقت. سيتم نشر التعديلات على هذه الصفحة مع تحديث تاريخ "آخر تحديث" في الأعلى. التغييرات الجوهرية قد يتم إخطارك بها عبر:</p>
+                    <ul data-tr="termsSection11List">
+                        <li><strong>البريد الإلكتروني:</strong> إذا قمت بتزويدنا بعنوان بريدك الإلكتروني.</li>
+                        <li><strong>إشعارات الموقع:</strong> عبر لافتة أو تنبيه داخل المنصة.</li>
+                        <li><strong>وسائل التواصل الاجتماعي:</strong> عبر حساباتنا الرسمية.</li>
+                    </ul>
+                    <p data-tr="termsSection11Text2">استمرارك في استخدام المنصة بعد سريان التعديلات يعتبر قبولاً منك للشروط الجديدة. ننصح بمراجعة هذه الصفحة دورياً للاطلاع على أي تغييرات.</p>
+                </div>
+
+                <!-- 12. الاتصال -->
+                <div class="legal-section">
+                    <h2><span class="num">١٢</span> <span data-tr="termsSection12Title">الاتصال بنا</span></h2>
+                    <p data-tr="termsSection12Text">إذا كان لديك أي استفسار أو تعليق أو شكوى بخصوص هذه الشروط أو أي جانب آخر من المنصة، نرحب بتواصلك معنا عبر القنوات التالية:</p>
+                    <ul data-tr="termsSection12List">
+                        <li><strong>البريد الإلكتروني:</strong> <a href="mailto:hisham123awad@gmail.com" style="color:var(--accent);font-weight:700;">hisham123awad@gmail.com</a></li>
+                        <li><strong>صفحة الدعم الفني:</strong> <a href="support.html" style="color:var(--accent);font-weight:700;">support.html</a></li>
+                        <li><strong>وسائل التواصل الاجتماعي:</strong> (أضف روابط حساباتك إن وجدت)</li>
+                    </ul>
+                    <p data-tr="termsSection12Text2">نحن ملتزمون بالرد على جميع الاستفسارات في أقرب وقت ممكن، عادةً خلال 24-48 ساعة عمل.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-ftr">
+        <div class="ctn">
+            <div class="ftr-logo" translate="no">CB<em>BX</em></div>
+            <div class="ftr-stars" aria-label="تقييم 5 نجوم">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <nav class="ftr-links">
+                <a href="privacy.html" class="ftr-link" data-tr="privacy">سياسة الخصوصية</a>
+                <a href="terms.html" class="ftr-link" data-tr="terms">شروط الخدمة</a>
+                <a href="support.html" class="ftr-link contact-link" data-tr="supportLink">📧 تواصل معنا</a>
+                <a href="about.html" class="ftr-link" data-tr="aboutLink">من نحن</a>
+                <a href="blog.html" class="ftr-link" data-tr="blogLink">الأدوات</a>
+            </nav>
+            <p class="ftr-copy" data-tr="copy">&copy; 2026 CBBX</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="الرجوع للأعلى">↑</button>
+
+    <script src="core.js"></script>
+    <script src="tools-loader.js"></script>
+</body>
+</html>

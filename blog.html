@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أدوات CBBX – شرح تفصيلي</title>
+    <meta name="description" content="تعرف على أدوات CBBX الذكية: قص الصمت، تحليل المشاهد، تحويل الصوت لنص، تحسين الدقة، عزل الصوت، وأتمتة المهام.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .blog-page {
+            padding: 120px 0 60px;
+            background: var(--bg);
+            min-height: 80vh;
+        }
+        .blog-page .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .blog-page h1 {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--txt);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .blog-page h1 .hl {
+            color: var(--accent);
+        }
+        .blog-page .subtitle {
+            text-align: center;
+            color: var(--txt2);
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .blog-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .blog-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: var(--accent);
+            box-shadow: 0 16px 48px rgba(220, 20, 60, 0.15);
+        }
+        .blog-card .card-img {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            border-bottom: 2px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .blog-card .card-img .img-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.08;
+            background: radial-gradient(circle at center, var(--accent), transparent 70%);
+            transition: opacity 0.4s ease;
+        }
+        .blog-card:hover .card-img .img-bg {
+            opacity: 0.2;
+        }
+        .blog-card .card-img .icon {
+            position: relative;
+            z-index: 2;
+        }
+        .blog-card .card-body {
+            padding: 24px 20px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card .card-body .tag {
+            display: inline-block;
+            background: var(--glow-s);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 14px;
+            border-radius: 20px;
+            align-self: flex-start;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .blog-card .card-body h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--txt);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .blog-card .card-body .brief {
+            color: var(--txt2);
+            font-size: 14px;
+            line-height: 1.7;
+            flex: 1;
+            margin-bottom: 12px;
+        }
+        .blog-card .card-body .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--txt2);
+        }
+        .blog-card .card-body .meta .read-trigger {
+            color: var(--accent);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+        .blog-card:hover .meta .read-trigger {
+            gap: 12px;
+        }
+        .blog-card .card-body .meta .read-trigger svg {
+            transition: transform 0.3s ease;
+        }
+        .blog-card:hover .meta .read-trigger svg {
+            transform: translateX(-4px);
+        }
+
+        /* ===== مودال خفيف وسريع ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-box {
+            background: var(--bg);
+            border-radius: 28px;
+            max-width: 880px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px 36px;
+            position: relative;
+            transform: scale(0.95) translateY(12px);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+        }
+        .modal-overlay.active .modal-box {
+            transform: scale(1) translateY(0);
+        }
+        .modal-box .modal-close {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--surface2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--txt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            z-index: 10;
+        }
+        .modal-box .modal-close:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: rotate(90deg);
+            border-color: var(--accent);
+        }
+        .modal-box .modal-icon {
+            font-size: 56px;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .modal-box .modal-tag {
+            display: inline-block;
+            background: var(--glow-s);
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 700;
+            padding: 3px 18px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+        .modal-box h2 {
+            font-size: 30px;
+            font-weight: 900;
+            color: var(--txt);
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+        .modal-box .modal-meta {
+            font-size: 15px;
+            color: var(--txt2);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            background: var(--surface2);
+            padding: 8px 18px;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+            align-self: flex-start;
+        }
+        .modal-box .modal-content {
+            color: var(--txt2);
+            font-size: 1.15rem;
+            line-height: 2.1;
+        }
+        .modal-box .modal-content p {
+            margin-bottom: 18px;
+        }
+        .modal-box .modal-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 20px;
+        }
+        .modal-box .modal-content ul li {
+            padding: 8px 0 8px 32px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+            font-size: 1.05rem;
+        }
+        .modal-box .modal-content ul li::before {
+            content: "✦";
+            position: absolute;
+            right: 0;
+            top: 8px;
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+        .modal-box .modal-content strong {
+            color: var(--txt);
+            font-weight: 800;
+        }
+        .modal-box::-webkit-scrollbar { width: 6px; }
+        .modal-box::-webkit-scrollbar-track { background: var(--surface2); border-radius: 10px; }
+        .modal-box::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+        @media(max-width:700px) {
+            .blog-page { padding: 100px 0 40px; }
+            .blog-page h1 { font-size: 28px; }
+            .modal-box { padding: 28px 18px; }
+            .modal-box h2 { font-size: 24px; }
+            .modal-box .modal-content { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-hdr">
+        <div class="hdr-inner">
+            <a href="index.html" class="logo-block" translate="no" style="text-decoration:none;">
+                <div class="logo-box">CB<em>BX</em></div>
+            </a>
+            <a href="index.html" class="nav-pill" data-tr="navHome" style="text-decoration:none;">الرئيسية</a>
+            <div class="tools-wrap">
+                <button class="tools-wrap-btn">
+                    <span data-tr="navTools">الأدوات</span>
+                    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="tools-dd" id="toolsDd"></ul>
+            </div>
+            <a href="activation-code.html" class="nav-pill" data-tr="navActivation" style="text-decoration:none;">كود تفعيل</a>
+            <div class="hdr-spacer"></div>
+            <button class="ico-btn" id="themeBtn" aria-label="تبديل الثيم">
+                <svg class="sun-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+            </button>
+            <div class="lang-wrap">
+                <button class="lang-btn" id="langBtn">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+                    <span id="langLabel">AR</span>
+                </button>
+                <ul class="lang-menu" id="langMenu"></ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== المحتوى ===== -->
+    <section class="blog-page">
+        <div class="container">
+            <h1 data-tr="blogMainTitle">🧠 <span class="hl">أدوات CBBX</span> الذكية</h1>
+            <p class="subtitle" data-tr="blogMainSub">اكتشف مجموعة أدواتنا المتطورة لتحرير الفيديو والصوت والأتمتة. اضغط على أي أداة لقراءة الشرح الكامل.</p>
+            <div class="blog-grid" id="toolsGridBlog"></div>
+        </div>
+    </section>
+
+    <!-- ===== المودال ===== -->
+    <div class="modal-overlay" id="articleModal">
+        <div class="modal-box">
+            <button class="modal-close" id="modalCloseBtn">✕</button>
+            <span class="modal-icon" id="modalIcon">🎬</span>
+            <span class="modal-tag" id="modalTag">تحرير</span>
+            <h2 id="modalTitle">عنوان المقال</h2>
+            <div class="modal-meta">
+                <span id="modalDate">📅 2026</span>
+                <span id="modalReadTime">⏱️ 5 دقائق قراءة</span>
+            </div>
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-ftr">
+        <div class="ctn">
+            <div class="ftr-logo" translate="no">CB<em>BX</em></div>
+            <div class="ftr-stars" aria-label="تقييم 5 نجوم">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <nav class="ftr-links">
+                <a href="privacy.html" class="ftr-link" data-tr="privacy">سياسة الخصوصية</a>
+                <a href="terms.html" class="ftr-link" data-tr="terms">شروط الخدمة</a>
+                <a href="support.html" class="ftr-link contact-link" data-tr="supportLink">📧 الدعم الفني</a>
+                <a href="about.html" class="ftr-link" data-tr="aboutLink">من نحن</a>
+                <a href="blog.html" class="ftr-link" data-tr="blogLink">الأدوات</a>
+            </nav>
+            <p class="ftr-copy" data-tr="copy">&copy; 2026 CBBX</p>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="core.js"></script>
+    <script src="tools-loader.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            // ---------- بيانات الأدوات (المقالات) ----------
+            const toolsArticles = [{
+                id: 0,
+                icon: '🎬',
+                tag: 'تحرير الفيديو',
+                title: 'قص الصمت التلقائي من المشاهد',
+                brief: 'إزالة فجوات الصمت الطويلة من فيديوهاتك تلقائياً لتحسين إيقاع المونتاج.',
+                date: 'يوليو 2026',
+                readTime: '٤ دقائق',
+                contentHTML: `
+                    <p>أداة <strong>قص الصمت التلقائي</strong> هي أولى أدوات CBBX المصممة خصيصاً لمنشئي المحتوى الذين يعانون من فجوات الصمت الطويلة في تسجيلاتهم. سواء كنت تسجل بودكاست، أو دروساً تعليمية، أو مقابلات، فإن هذه الأداة توفر عليك ساعات من التحرير اليدوي.</p>
+                    <p>تعمل الأداة عن طريق تحليل الموجات الصوتية للفيديو، وتحديد الفترات التي يقل فيها مستوى الصوت عن عتبة معينة (تحددها أنت). ثم تقوم تلقائياً بحذف هذه الفترات مع ضم المقاطع المتبقية بسلاسة، مع الحفاظ على جودة الفيديو والصوت الأصلية دون أي إعادة ترميز تؤثر على البيانات.</p>
+                    <p><strong>مميزات الأداة:</strong></p>
+                    <ul>
+                        <li><strong>عتبة ذكية:</strong> يمكنك ضبط حساسية الصمت (من 1% إلى 50%) لتناسب طبيعة تسجيلك.</li>
+                        <li><strong>معالجة سريعة:</strong> تعتمد على مكتبة FFmpeg لتنفيذ المعالجة محلياً على جهازك بسرعة فائقة.</li>
+                        <li><strong>معاينة فورية:</strong> يمكنك مشاهدة الفيديو بعد القص قبل حفظ الملف النهائي.</li>
+                        <li><strong>دعم جميع الصيغ:</strong> تعمل مع MP4, MKV, AVI, MOV, WebM وجميع الصيغ الشائعة.</li>
+                    </ul>
+                    <p>هذه الأداة مثالية لمن يريدون فيديوهات سريعة الإيقاع، أو لمن يقومون بتجميع لقطات متعددة ويريدون التخلص من الأجزاء الصامتة بضغطة زر واحدة. جربها الآن ووفر وقتك الثمين للإبداع.</p>
+                `
+            }, {
+                id: 1,
+                icon: '🎞️',
+                tag: 'تحليل بصري',
+                title: 'تحويل الفيديو إلى مشاهد ذكية',
+                brief: 'تقسيم الفيديو تلقائياً عند تغير المشهد باستخدام الذكاء الاصطناعي، لتسهيل عملية المونتاج.',
+                date: 'يوليو 2026',
+                readTime: '٥ دقائق',
+                contentHTML: `
+                    <p>أداة <strong>تحويل الفيديو إلى مشاهد</strong> هي ثاني أدواتنا، وهي حل مبتكر لمشكلة التقسيم اليدوي للمقاطع. باستخدام خوارزميات الكشف عن المشاهد (Scene Detection)، تقوم الأداة بتحليل كل إطار في الفيديو، وعندما يحدث تغير جذري في الإطارات (مثل تغير الزاوية، أو الانتقال إلى مشهد جديد)، تقوم بقص الفيديو تلقائياً إلى مقطع منفصل.</p>
+                    <p>ما يميز هذه الأداة هو استخدامها للذكاء الاصطناعي لتحديد التغيرات البصرية بدقة عالية، حتى في المشاهد ذات الإضاءة المنخفضة أو الحركة البطيئة. يمكنك بعد ذلك التعامل مع كل مشهد على حدة، مما يسهل عملية المونتاج غير الخطي (NLE) بشكل كبير.</p>
+                    <p><strong>فوائد استخدام الأداة:</strong></p>
+                    <ul>
+                        <li><strong>توفير الوقت:</strong> بدلاً من قص الفيديو يدوياً، تقوم الأداة بذلك في ثوانٍ.</li>
+                        <li><strong>دقة عالية:</strong> تعتمد على تحليل إطار بإطار مع مراعاة التغيرات اللونية والحركية.</li>
+                        <li><strong>إخراج منظم:</strong> تحصل على ملفات منفصلة لكل مشهد، جاهزة للسحب والإفلات في برامج المونتاج.</li>
+                        <li><strong>مرونة الإعدادات:</strong> يمكنك ضبط حساسية الكشف لتتناسب مع سرعة التحرير في الفيديو الخاص بك.</li>
+                    </ul>
+                    <p>هذه الأداة هي المنقذ لمحرري الأفلام الوثائقية، ومونتاج الفعاليات، وأي شخص يحتاج إلى فرز كم كبير من اللقطات بسرعة. مع CBBX، أصبح المونتاج الذكي في متناول يدك.</p>
+                `
+            }, {
+                id: 2,
+                icon: '📝',
+                tag: 'ذكاء اصطناعي',
+                title: 'تحويل الصوت إلى نص (SRT)',
+                brief: 'استخراج النص من الصوت مع التوقيت الزمني بصيغة SRT للترجمة والدبلجة الاحترافية.',
+                date: 'يوليو 2026',
+                readTime: '٦ دقائق',
+                contentHTML: `
+                    <p>أداة <strong>تحويل الصوت إلى نص</strong> هي الأداة الثالثة في مجموعتنا، وهي بوابة العصر الرقمي لمنشئي المحتوى. باستخدام أحدث نماذج التعلم العميق (مثل Whisper من OpenAI)، تقوم الأداة بتحويل الملف الصوتي أو المسار الصوتي للفيديو إلى نص مكتوب مع توقيت زمني دقيق لكل جملة، ويتم تصديره بصيغة <strong>SRT</strong> القياسية.</p>
+                    <p>هذه الأداة ليست مجرد ترجمة، بل هي أداة إنتاجية متكاملة. يمكنك استخدام الملف الناتج مباشرة في برامج التحرير مثل Adobe Premiere أو DaVinci Resolve لإضافة ترجمات احترافية، أو استخدامه كمرجع للدبلجة، أو حتى لتحسين محتوى الفيديو الخاص بك لمحركات البحث (SEO).</p>
+                    <p><strong>مميزات متقدمة:</strong></p>
+                    <ul>
+                        <li><strong>دقة التوقيت:</strong> يتم تحديد بداية ونهاية كل مقطع صوتي بدقة تصل إلى 0.01 ثانية.</li>
+                        <li><strong>دعم 70+ لغة:</strong> يمكن للأداة التعرف على معظم اللغات العالمية وترجمتها.</li>
+                        <li><strong>معالجة محلية:</strong> يتم كل شيء على جهازك، دون رفع ملفاتك لخوادم خارجية، لضمان الخصوصية.</li>
+                        <li><strong>تصدير متعدد:</strong> يمكنك تصدير النص كـ SRT أو TXT أو حتى كـ JSON للاستخدام البرمجي.</li>
+                    </ul>
+                    <p>سواء كنت تترجم محتوى تعليمي، أو تريد إضافة كابشن لفيديوهات السوشيال ميديا، أو تحتاج إلى نسخة نصية من بودكاست، فإن هذه الأداة ستكون رفيقك الدائم في رحلة الإبداع.</p>
+                `
+            }, {
+                id: 3,
+                icon: '🖼️',
+                tag: 'تحسين الصورة',
+                title: 'رفع دقة الفيديو والصور إلى 4K حقيقي',
+                brief: 'تحسين جودة الفيديوهات والصور إلى دقة 4K باستخدام الذكاء الاصطناعي (إعادة البناء وليس مجرد تكبير).',
+                date: 'يوليو 2026',
+                readTime: '٥ دقائق',
+                contentHTML: `
+                    <p>أداة <strong>تحسين الدقة إلى 4K</strong> هي جوهرة مجموعتنا. على عكس أدوات التكبير التقليدية التي تعتمد على interpolation (استيفاء البيكسلات) وتنتج صوراً ضبابية، تستخدم أداتنا <strong>شبكات عصبية عميقة</strong> تعيد بناء التفاصيل المفقودة في الصورة أو الفيديو.</p>
+                    <p>تعمل الخوارزمية على تحليل النسيج والحواف والألوان في الإطارات المنخفضة الدقة، ثم تقوم بتوليد بيكسلات جديدة تضيف تفاصيل حقيقية، مما يجعل الصورة تبدو وكأنها ملتقطة بكاميرا 4K أصلية. هذه التقنية تغير قواعد اللعبة بالنسبة للمحتوى القديم أو المقاطع المضغوطة.</p>
+                    <p><strong>لماذا هذه الأداة مميزة؟</strong></p>
+                    <ul>
+                        <li><strong>جودة حقيقية:</strong> ليست مجرد تكبير، بل إعادة بناء ذكية تعيد الحياة للتفاصيل.</li>
+                        <li><strong>تحسين الصور والفيديو:</strong> تدعم الملفات الثابتة والمتحركة، وهي مثالية لترميم الأفلام القديمة.</li>
+                        <li><strong>وضعان للتحسين:</strong> يمكنك الاختيار بين تحسين الوجه (للصور الشخصية) أو تحسين المشهد (للطبيعة والمعالم).</li>
+                        <li><strong>معاينة مقارنة:</strong> عرض الصورة قبل وبعد التحسين جنباً إلى جنب لتقييم النتيجة.</li>
+                    </ul>
+                    <p>استخدم هذه الأداة لترقية محتواك القديم، أو لتحسين جودة اللقطات التي تم تصويرها بكاميرات الهواتف، وامنح جمهورك تجربة بصرية استثنائية.</p>
+                `
+            }, {
+                id: 4,
+                icon: '🎧',
+                tag: 'هندسة صوتية',
+                title: 'عزل الكلام عن الموسيقى (Stem Separation)',
+                brief: 'افصل الكلام عن الموسيقى، أو اعزل الآلات الموسيقية عن بعضها البعض باستخدام الذكاء الاصطناعي.',
+                date: 'يوليو 2026',
+                readTime: '٦ دقائق',
+                contentHTML: `
+                    <p>أداة <strong>عزل الصوت والموسيقى</strong> هي واحدة من أكثر الأدوات إثارة في منصتنا. باستخدام نماذج التعلم العميق المتخصصة في معالجة الإشارات الصوتية (Demucs و Spleeter)، تمكنك الأداة من فصل المسارات الصوتية المعقدة إلى مكوناتها الأساسية.</p>
+                    <p>تخيل أن لديك أغنية كاملة وتريد استخراج صوت المغني فقط لعمل ريمكس، أو تريد إزالة الموسيقى الخلفية من مقطع فيديو لاستخدام المؤثرات الصوتية النقية. هذه الأداة تفعل ذلك بضغطة زر، بجودة احترافية تسمح لك بإعادة المكساج أو المونتاج الصوتي بكل حرية.</p>
+                    <p><strong>القدرات المتقدمة للأداة:</strong></p>
+                    <ul>
+                        <li><strong>فصل 4 مسارات:</strong> تفصل الصوت إلى (غناء، درامز، بيس، وآلات أخرى) بجودة عالية.</li>
+                        <li><strong>عزل الكلام:</strong> استخراج الكلام النقي من أي ملف فيديو أو صوت، حتى مع وجود ضوضاء خلفية.</li>
+                        <li><strong>إزالة الضوضاء:</strong> تنقية الصوت من الأزيز والهمهمات باستخدام تقنية DeepFilterNet المتطورة.</li>
+                        <li><strong>معاينة فورية:</strong> استمع لكل مسار على حدة قبل تصدير الملف النهائي.</li>
+                    </ul>
+                    <p>هذه الأداة هي الحلم لمنتجي البودكاست، ومهندسي الصوت، وصانعي الريمكسات، ومنشئي المحتوى الذين يريدون التحكم الكامل في العناصر الصوتية لأعمالهم.</p>
+                `
+            }, {
+                id: 5,
+                icon: '⚙️',
+                tag: 'أتمتة ذكية',
+                title: 'أتمتة المهام المتكررة (Code Automation)',
+                brief: 'اكتب كوداً بسيطاً لأتمتة المهام المملة والمتكررة على الفيديوهات والصور، بدقة خالية من الأخطاء.',
+                date: 'يوليو 2026',
+                readTime: '٧ دقائق',
+                contentHTML: `
+                    <p>أداة <strong>أتمتة المهام المتكررة</strong> هي الأداة الأكثر تقدماً وثورية في منصتنا. بدلاً من تكرار نفس العمليات (مثل قص الصمت، أو تحسين الدقة، أو تحويل الصيغ) على مئات الملفات يدوياً، تتيح لك هذه الأداة كتابة <strong>سكريبت (كود)</strong> بسيط بلغة Python أو JavaScript لتنفيذ هذه المهام دفعة واحدة.</p>
+                    <p>هذه ليست مجرد أداة، بل هي بيئة تطوير مصغرة تمكنك من إنشاء سير عمل (Workflow) خاص بك. يمكنك ربط عدة أدوات معاً في تسلسل منطقي: مثلاً، استخراج الصوت من فيديو → تحويله إلى نص → استخدام النص لترجمة الفيديو تلقائياً، كل ذلك بكود لا يتجاوز 10 أسطر.</p>
+                    <p><strong>ماذا يمكنك أن تفعل بالأتمتة؟</strong></p>
+                    <ul>
+                        <li><strong>معالجة دفعية:</strong> طبّق أداة قص الصمت على 100 فيديو دفعة واحدة.</li>
+                        <li><strong>ضبط جماعي:</strong> غيّر حجم أو دقة أو صيغة مجموعة كبيرة من الملفات بضغطة زر.</li>
+                        <li><strong>توليد تقارير:</strong> استخرج بيانات تحليلية (مثل مدة الصمت، عدد المشاهد، جودة الصوت) وأخرجها في ملف CSV.</li>
+                        <li><strong>دمج الأدوات:</strong> أنشئ سلاسل عمل معقدة تجمع بين عدة أدوات لتنتج مخرجات مبتكرة.</li>
+                    </ul>
+                    <p>هذه الأداة موجهة للمستخدمين المحترفين والمطورين، لكننا وفرنا لها واجهة سهلة وقوالب جاهزة لتجعل الأتمتة في متناول الجميع. مع CBBX، الإبداع ليس له حدود، والعمل المتكرر أصبح شيئاً من الماضي.</p>
+                `
+            }];
+
+            // ---------- بناء البطاقات ----------
+            const grid = document.getElementById('toolsGridBlog');
+            if (grid) {
+                grid.innerHTML = '';
+                toolsArticles.forEach((tool, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'blog-card';
+                    card.setAttribute('data-index', index);
+                    card.innerHTML = `
+                        <div class="card-img" style="background: var(--surface2);">
+                            <div class="img-bg"></div>
+                            <span class="icon">${tool.icon}</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="tag" data-tr="blogTag${index}">${tool.tag}</span>
+                            <h3 data-tr="blogTitle${index}">${tool.title}</h3>
+                            <p class="brief" data-tr="blogBrief${index}">${tool.brief}</p>
+                            <div class="meta">
+                                <span data-tr="blogDate${index}">📅 ${tool.date}</span>
+                                <span class="read-trigger" data-tr="blogReadTrigger">
+                                    اقرأ الشرح
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12"/>
+                                        <polyline points="12 5 19 12 12 19"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                    card.addEventListener('click', function() {
+                        openArticle(index);
+                    });
+                    grid.appendChild(card);
+                });
+            }
+
+            // ---------- المودال والترجمة السريعة ----------
+            const modal = document.getElementById('articleModal');
+            const closeBtn = document.getElementById('modalCloseBtn');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTag = document.getElementById('modalTag');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDate = document.getElementById('modalDate');
+            const modalReadTime = document.getElementById('modalReadTime');
+            const modalContent = document.getElementById('modalContent');
+
+            let currentIndex = null;
+            let originalContent = '';
+            let originalTag = '';
+            let originalTitle = '';
+            let originalDate = '';
+            let originalReadTime = '';
+
+            // دالة ترجمة النص باستخدام engine
+            async function translateTextIfNeeded(text) {
+                const lang = window.translateEngine ? window.translateEngine.currentLang : 'ar';
+                if (lang === 'ar') return text;
+                if (!window.translateEngine) return text;
+                try {
+                    const result = await window.translateEngine.translateText(text, lang);
+                    return result || text;
+                } catch (e) {
+                    return text;
+                }
+            }
+
+            // دالة ترجمة المحتوى النصي (HTML) باستخدام TreeWalker
+            async function translateHtmlContent(html) {
+                const lang = window.translateEngine ? window.translateEngine.currentLang : 'ar';
+                if (lang === 'ar') return html;
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const body = doc.body;
+
+                const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null, false);
+                const textNodes = [];
+                let node;
+                while (node = walker.nextNode()) {
+                    if (node.textContent.trim()) {
+                        textNodes.push(node);
+                    }
+                }
+
+                for (let tn of textNodes) {
+                    const original = tn.textContent.trim();
+                    if (original) {
+                        const translated = await translateTextIfNeeded(original);
+                        if (translated && translated !== original) {
+                            tn.textContent = translated;
+                        }
+                    }
+                }
+
+                return body.innerHTML;
+            }
+
+            // دالة ترجمة جميع عناصر المودال
+            async function translateModal() {
+                const lang = window.translateEngine ? window.translateEngine.currentLang : 'ar';
+                if (lang === 'ar') {
+                    // إعادة النصوص الأصلية
+                    modalTag.textContent = originalTag;
+                    modalTitle.textContent = originalTitle;
+                    modalDate.textContent = originalDate;
+                    modalReadTime.textContent = originalReadTime;
+                    if (originalContent) {
+                        modalContent.innerHTML = originalContent;
+                    }
+                    return;
+                }
+
+                // ترجمة التصنيف
+                const translatedTag = await translateTextIfNeeded(originalTag);
+                if (translatedTag) modalTag.textContent = translatedTag;
+
+                // ترجمة العنوان (اسم الأداة)
+                const translatedTitle = await translateTextIfNeeded(originalTitle);
+                if (translatedTitle) modalTitle.textContent = translatedTitle;
+
+                // ترجمة التاريخ ووقت القراءة (مع الاحتفاظ بالأيقونات)
+                const dateText = originalDate.replace(/^📅\s*/, '');
+                const translatedDate = await translateTextIfNeeded(dateText);
+                if (translatedDate) modalDate.textContent = '📅 ' + translatedDate;
+
+                const readText = originalReadTime.replace(/^⏱️\s*/, '');
+                const translatedRead = await translateTextIfNeeded(readText);
+                if (translatedRead) modalReadTime.textContent = '⏱️ ' + translatedRead;
+
+                // ترجمة المحتوى
+                if (originalContent) {
+                    const translatedHtml = await translateHtmlContent(originalContent);
+                    modalContent.innerHTML = translatedHtml;
+                }
+            }
+
+            // فتح المقال مع عرض فوري ثم ترجمة
+            async function openArticle(index) {
+                const tool = toolsArticles[index];
+                if (!tool) return;
+
+                currentIndex = index;
+
+                // حفظ النصوص الأصلية
+                originalTag = tool.tag;
+                originalTitle = tool.title;
+                originalDate = '📅 ' + tool.date;
+                originalReadTime = '⏱️ ' + tool.readTime + ' قراءة';
+                originalContent = tool.contentHTML;
+
+                // عرض المحتوى العربي فوراً
+                modalIcon.textContent = tool.icon;
+                modalTag.textContent = originalTag;
+                modalTitle.textContent = originalTitle;
+                modalDate.textContent = originalDate;
+                modalReadTime.textContent = originalReadTime;
+                modalContent.innerHTML = originalContent;
+
+                // عرض المودال
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                // بدء الترجمة في الخلفية (إذا كانت اللغة غير عربية)
+                await translateModal();
+            }
+
+            // إغلاق المودال
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                currentIndex = null;
+                originalContent = '';
+            }
+
+            // أحداث الإغلاق
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+            });
+
+            window.openArticle = openArticle;
+            window.closeModal = closeModal;
+
+            // ---------- الاستماع لتغيير اللغة وإعادة الترجمة ----------
+            document.addEventListener('languageChanged', async function() {
+                if (modal.classList.contains('active') && currentIndex !== null) {
+                    await translateModal();
+                }
+            });
+
+            // تعديل setLanguage في translateEngine لتوليد الحدث
+            if (window.translateEngine && !window.translateEngine._patched) {
+                const orig = window.translateEngine.setLanguage;
+                window.translateEngine.setLanguage = function(code) {
+                    orig.call(this, code);
+                    document.dispatchEvent(new CustomEvent('languageChanged'));
+                };
+                window.translateEngine._patched = true;
+            }
+
+            console.log('✅ صفحة شرح الأدوات جاهزة مع ترجمة سريعة للمحتوى بالكامل، بما في ذلك اسم الأداة.');
+        })();
+    </script>
+
+</body>
+</html>
